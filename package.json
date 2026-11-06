@@ -1,0 +1,17 @@
+{
+  "name": "kurzagin-ui-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "bun run --filter \"*\" build",
+    "dev:docs": "bun run --filter docs dev",
+    "build:ui": "bun run --filter @kurzagin/ui build",
+    "typecheck": "bun run --filter \"*\" typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
+}
