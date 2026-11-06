@@ -22,10 +22,12 @@
       "import": "./dist/utils.mjs",
       "require": "./dist/utils.js"
     },
-    "./styles.css": "./dist/index.css"
+    "./styles.css": "./dist/index.css",
+    "./assets/*": "./assets/*"
   },
   "files": [
-    "dist"
+    "dist",
+    "assets"
   ],
   "scripts": {
     "build": "tsup",

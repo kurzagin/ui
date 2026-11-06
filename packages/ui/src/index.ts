@@ -16,3 +16,4 @@ export * from './components/TechLabel';
 export * from './components/Vinyl';
 export * from './components/StickyNote';
 export * from './components/SpoilerGate';
+export * from './components/Logo';

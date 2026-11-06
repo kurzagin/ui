@@ -14,6 +14,7 @@ mkdir -p "$TMP_DIST"
 cp "$PKG_DIR/package.json" "$TMP_DIST/"
 cp -r "$PKG_DIR/dist" "$TMP_DIST/"
 cp -r "$PKG_DIR/src" "$TMP_DIST/"
+[ -d "$PKG_DIR/assets" ] && cp -r "$PKG_DIR/assets" "$TMP_DIST/"
 [ -f "$REPO_ROOT/README.md" ] && cp "$REPO_ROOT/README.md" "$TMP_DIST/"
 
 cd "$TMP_DIST"
