@@ -242,10 +242,47 @@ a:hover {
 
 .component-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 8px;
-  flex-wrap: wrap;
+}
+
+.code-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: 1px solid var(--kz-border);
+  border-radius: var(--kz-radius-xs);
+  padding: 3px 8px;
+  font-family: var(--kz-mono);
+  font-size: 10px;
+  color: var(--kz-text-2);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.code-toggle-btn:hover {
+  border-color: var(--kz-accent);
+  color: var(--kz-accent);
+}
+
+.code-toggle-btn.active {
+  border-color: var(--kz-accent);
+  color: var(--kz-accent);
+  background: var(--kz-bg-2);
+}
+
+.code-collapse-panel {
+  display: flex;
+  flex-direction: column;
+  animation: kz-code-fade 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes kz-code-fade {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .component-header-tags {

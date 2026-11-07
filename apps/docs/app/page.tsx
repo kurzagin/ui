@@ -25,7 +25,7 @@ import {
   HudToast,
   BottomBar,
 } from '@kurzagin/ui';
-import { Copy, Check, Terminal, ExternalLink, Sparkles, Play, Pause, ChevronUp, Home, Compass, Disc3, Settings } from 'lucide-react';
+import { Copy, Check, Terminal, ExternalLink, Sparkles, Play, Pause, ChevronUp, Home, Compass, Disc3, Settings, Code } from 'lucide-react';
 
 const THEMES = [
   { id: 'default', name: 'Amber', color: '#c49368' },
@@ -47,6 +47,11 @@ export default function HomePage() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isToastOpen, setIsToastOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('home');
+  const [openCodes, setOpenCodes] = useState<Record<string, boolean>>({});
+
+  const toggleCode = (name: string) => {
+    setOpenCodes((prev) => ({ ...prev, [name]: !prev[name] }));
+  };
 
   const activeTheme = THEMES.find((t) => t.id === theme) || THEMES[0];
 
@@ -121,6 +126,15 @@ export default function HomePage() {
           <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
             <div className="component-header">
               <span className="component-name">Brand &amp; Assets</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['brand'] ? 'active' : ''}`}
+                onClick={() => toggleCode('brand')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['brand'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
 
             <div className="preview-box" style={{ gap: '20px', flexWrap: 'wrap', padding: '16px 12px' }}>
@@ -142,30 +156,56 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="code-box">
+            {openCodes['brand'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`// React: <Logo size={36} variant="default" withRing />\n// Static: favicon.ico, logo.svg, icon-alley.png, pwa-192x192.png`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* Button Component */}
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">Button</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['button'] ? 'active' : ''}`}
+                onClick={() => toggleCode('button')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['button'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box">
               <Button variant="primary">Execute</Button>
               <Button variant="outline">Default</Button>
               <Button variant="ghost">Dismiss</Button>
             </div>
-            <div className="code-box">
+            {openCodes['button'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<Button variant="primary">Execute</Button>\n<Button variant="outline">Default</Button>`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* BracketCard Component */}
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">BracketCard</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['bracketCard'] ? 'active' : ''}`}
+                onClick={() => toggleCode('bracketCard')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['bracketCard'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box">
               <BracketCard style={{ padding: '16px', width: '100%' }}>
@@ -174,15 +214,28 @@ export default function HomePage() {
                 </span>
               </BracketCard>
             </div>
-            <div className="code-box">
+            {openCodes['bracketCard'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<BracketCard style={{ padding: '16px' }}>\n  <span>Content</span>\n</BracketCard>`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* CornerFrame Component */}
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">CornerFrame</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['cornerFrame'] ? 'active' : ''}`}
+                onClick={() => toggleCode('cornerFrame')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['cornerFrame'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box">
               <CornerFrame style={{ padding: '16px', width: '100%' }}>
@@ -191,15 +244,28 @@ export default function HomePage() {
                 </span>
               </CornerFrame>
             </div>
-            <div className="code-box">
+            {openCodes['cornerFrame'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<CornerFrame style={{ padding: '16px' }}>\n  <span>Content</span>\n</CornerFrame>`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* Vinyl Disc Player */}
           <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
             <div className="component-header">
               <span className="component-name">Vinyl Audio Deck</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['vinyl'] ? 'active' : ''}`}
+                onClick={() => toggleCode('vinyl')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['vinyl'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             
             <div className="preview-box" style={{ flexDirection: 'column', gap: '20px', alignItems: 'stretch' }}>
@@ -270,15 +336,28 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="code-box">
+            {openCodes['vinyl'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`// Turntable: <Vinyl layout="turntable" variant="default" title="TRACK" playing={playing} />\n// Mini: <Vinyl layout="mini" variant="default" title="TRACK" playing={playing} />\n// Sleeve: <Vinyl layout="sleeve" variant="default" title="CRATE" />`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* Sticky Note */}
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">StickyNote</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['stickyNote'] ? 'active' : ''}`}
+                onClick={() => toggleCode('stickyNote')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['stickyNote'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box">
               <StickyNote
@@ -290,15 +369,28 @@ export default function HomePage() {
                 Refactored tokens to include Alley purple palette.
               </StickyNote>
             </div>
-            <div className="code-box">
+            {openCodes['stickyNote'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<StickyNote colorVariant={1} title="MEMO // 04" tape>\n  Refactored tokens.\n</StickyNote>`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* Spoiler Gate */}
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">SpoilerGate</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['spoilerGate'] ? 'active' : ''}`}
+                onClick={() => toggleCode('spoilerGate')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['spoilerGate'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box" style={{ width: '100%', padding: '0' }}>
               <SpoilerGate
@@ -312,30 +404,56 @@ export default function HomePage() {
                 </div>
               </SpoilerGate>
             </div>
-            <div className="code-box">
+            {openCodes['spoilerGate'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<SpoilerGate title="CLASSIFIED" clearanceText="LVL-4">\n  <div>Confidential</div>\n</SpoilerGate>`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* Badge & Dot Component */}
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">Badge &amp; Dot</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['badge'] ? 'active' : ''}`}
+                onClick={() => toggleCode('badge')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['badge'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box">
               <Badge variant="accent"><Dot color="accent" pulse /> Online</Badge>
               <Badge variant="outline"><Dot color="green" /> Synced</Badge>
               <Badge variant="purple"><Dot color="purple" /> Alley</Badge>
             </div>
-            <div className="code-box">
+            {openCodes['badge'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<Badge variant="accent">\n  <Dot color="accent" pulse /> Active\n</Badge>`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* TechLabel Component */}
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">TechLabel</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['techLabel'] ? 'active' : ''}`}
+                onClick={() => toggleCode('techLabel')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['techLabel'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box">
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -343,15 +461,28 @@ export default function HomePage() {
                 <TechLabel label="NETWORK_STAT" jp="通信状況" coord="SEC-01" />
               </div>
             </div>
-            <div className="code-box">
+            {openCodes['techLabel'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<TechLabel\n  label="SYSTEM_LOG"\n  jp="システム記録"\n  coord="35.68, 139.69"\n/>`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* Input / Terminal Prompt */}
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">Input</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['input'] ? 'active' : ''}`}
+                onClick={() => toggleCode('input')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['input'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
               <Input
@@ -363,15 +494,28 @@ export default function HomePage() {
                 hint="Press Enter to execute query"
               />
             </div>
-            <div className="code-box">
+            {openCodes['input'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<Input\n  label="COMMAND_QUERY"\n  sublabel="コマンド入力"\n  placeholder="system --sync-nodes"\n  prefixSymbol=">_"\n/>`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* TelemetryBar Component */}
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">TelemetryBar</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['telemetryBar'] ? 'active' : ''}`}
+                onClick={() => toggleCode('telemetryBar')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['telemetryBar'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box" style={{ flexDirection: 'column', gap: '14px', alignItems: 'stretch' }}>
               <TelemetryBar
@@ -388,15 +532,28 @@ export default function HomePage() {
                 variant="accent"
               />
             </div>
-            <div className="code-box">
+            {openCodes['telemetryBar'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<TelemetryBar label="BUFFER" value={68} coord="CORE-A" />\n<TelemetryBar segmented variant="accent" value={45} />`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* TerminalWindow Component */}
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">TerminalWindow</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['terminalWindow'] ? 'active' : ''}`}
+                onClick={() => toggleCode('terminalWindow')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['terminalWindow'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box" style={{ padding: '0', background: 'transparent', border: 'none' }}>
               <TerminalWindow
@@ -405,15 +562,28 @@ export default function HomePage() {
                 code={`#!/bin/bash\nexport THEME="default"\nkurzagin --status:optimal --node:01`}
               />
             </div>
-            <div className="code-box">
+            {openCodes['terminalWindow'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<TerminalWindow\n  title="cluster_daemon.sh"\n  badge="V-2.4"\n  code="..."\n/>`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* HudModal & Tooltip */}
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">HudModal &amp; Tooltip</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['modalTooltip'] ? 'active' : ''}`}
+                onClick={() => toggleCode('modalTooltip')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['modalTooltip'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box" style={{ gap: '14px' }}>
               <Tooltip content="Execute Node Handshake" coord="0xFA">
@@ -426,15 +596,28 @@ export default function HomePage() {
                 <Badge variant="outline">Hover For Tooltip</Badge>
               </Tooltip>
             </div>
-            <div className="code-box">
+            {openCodes['modalTooltip'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<Tooltip content="Execute Node Handshake">\n  <Button onClick={() => setOpen(true)}>Open Modal</Button>\n</Tooltip>`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* SegmentedControl Component */}
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">SegmentedControl</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['segmentedControl'] ? 'active' : ''}`}
+                onClick={() => toggleCode('segmentedControl')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['segmentedControl'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box" style={{ flexDirection: 'column', gap: '12px' }}>
               <SegmentedControl
@@ -451,15 +634,28 @@ export default function HomePage() {
                 Active Target: {selectedFormat.toUpperCase()}
               </span>
             </div>
-            <div className="code-box">
+            {openCodes['segmentedControl'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<SegmentedControl\n  options={[{ value: 'opus', label: 'OPUS' }, ...]}\n  value={format}\n  onChange={setFormat}\n  variant="accent"\n/>`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* CyberSwitch Component */}
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">CyberSwitch</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['cyberSwitch'] ? 'active' : ''}`}
+                onClick={() => toggleCode('cyberSwitch')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['cyberSwitch'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box" style={{ flexDirection: 'column', gap: '14px', alignItems: 'flex-start' }}>
               <CyberSwitch
@@ -477,15 +673,28 @@ export default function HomePage() {
                 variant="default"
               />
             </div>
-            <div className="code-box">
+            {openCodes['cyberSwitch'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<CyberSwitch\n  checked={enabled}\n  onChange={setEnabled}\n  label="CHAQUOPY ENGINE"\n  sublabel="On-device audio"\n/>`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* KeyValGrid Component */}
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">KeyValGrid</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['keyValGrid'] ? 'active' : ''}`}
+                onClick={() => toggleCode('keyValGrid')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['keyValGrid'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box" style={{ padding: '8px' }}>
               <KeyValGrid
@@ -499,15 +708,28 @@ export default function HomePage() {
                 ]}
               />
             </div>
-            <div className="code-box">
+            {openCodes['keyValGrid'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<KeyValGrid\n  title="DIAGNOSTICS"\n  items={[{ key: 'ENGINE', value: 'ONLINE', status: 'success' }]}\n/>`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* Breadcrumbs Component */}
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">Breadcrumbs</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['breadcrumbs'] ? 'active' : ''}`}
+                onClick={() => toggleCode('breadcrumbs')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['breadcrumbs'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box">
               <Breadcrumbs
@@ -520,15 +742,28 @@ export default function HomePage() {
                 ]}
               />
             </div>
-            <div className="code-box">
+            {openCodes['breadcrumbs'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<Breadcrumbs\n  prefix="ROOT //"\n  items={[{ label: 'HOME', href: '#' }, { label: 'CORE', active: true }]}\n/>`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* TacticalDrawer & HudToast Controls */}
           <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
             <div className="component-header">
               <span className="component-name">TacticalDrawer &amp; HudToast</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['drawerToast'] ? 'active' : ''}`}
+                onClick={() => toggleCode('drawerToast')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['drawerToast'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box" style={{ gap: '14px' }}>
               <Button variant="outline" onClick={() => setIsDrawerOpen(true)}>
@@ -538,15 +773,28 @@ export default function HomePage() {
                 Trigger HUD Toast
               </Button>
             </div>
-            <div className="code-box">
+            {openCodes['drawerToast'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<TacticalDrawer isOpen={open} onClose={() => setOpen(false)} position="bottom">\n  <Content />\n</TacticalDrawer>\n\n<HudToast isOpen={toast} onClose={() => setToast(false)} title="DOWNLOAD_COMPLETE" />`}
             </div>
+              </div>
+            )}
           </BracketCard>
 
           {/* BottomBar Component Showcase */}
           <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
             <div className="component-header">
               <span className="component-name">BottomBar</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['bottomBar'] ? 'active' : ''}`}
+                onClick={() => toggleCode('bottomBar')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['bottomBar'] ? 'Hide Code' : 'Code'}</span>
+              </button>
             </div>
             <div className="preview-box" style={{ padding: '0', background: 'transparent', border: 'none' }}>
               <BottomBar
@@ -562,9 +810,13 @@ export default function HomePage() {
                 ]}
               />
             </div>
-            <div className="code-box">
+            {openCodes['bottomBar'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
               {`<BottomBar\n  variant="default"\n  activeId={tab}\n  onSelect={setTab}\n  items={[\n    { id: 'home', label: 'Index', icon: <Home /> },\n    { id: 'audio', label: 'Audio', icon: <Disc3 />, badge: '3' },\n  ]}\n/>`}
             </div>
+              </div>
+            )}
           </BracketCard>
         </div>
 
