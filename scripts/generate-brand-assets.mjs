@@ -49,7 +49,6 @@ const svgBadgePurple = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102
 const targetDirs = [
   path.resolve(rootDir, 'packages/ui/assets'),
   path.resolve(rootDir, 'apps/docs/public'),
-  path.resolve(rootDir, '../personal-web-app/apps/web/public'),
 ];
 
 for (const dir of targetDirs) {

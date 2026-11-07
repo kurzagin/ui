@@ -150,13 +150,10 @@ const faviconSpecs = [
   { name: 'pwa-maskable-512x512.png', size: 512 },
 ];
 
-// Target directories to populate
+// Target directories to populate (only UI package assets and UI docs)
 const targetDirs = [
   '/root/projects/ui/packages/ui/assets',
   '/root/projects/ui/apps/docs/public',
-  '/root/projects/personal-web-app/apps/mobile/assets',
-  '/root/projects/personal-web-app/apps/web/public',
-  '/root/projects/youtube-to-opus/apps/mobile/assets',
 ];
 
 for (const dir of targetDirs) {
