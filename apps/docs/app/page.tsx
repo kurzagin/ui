@@ -814,20 +814,23 @@ export default function HomePage() {
         </div>
 
         {/* Footer */}
-        <footer
-          style={{
-            borderTop: '1px solid var(--kz-border-subtle)',
-            padding: '20px 0 40px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            fontSize: '11px',
-            color: 'var(--kz-text-2)',
-            fontFamily: 'var(--kz-mono)',
-          }}
-        >
-          <div>ui.kurzagin.com</div>
-          <div>Apache-2.0 License</div>
+        <footer className="docs-footer">
+          <div className="docs-footer-left">
+            <Logo size={16} variant="default" />
+            <span>&copy; {new Date().getFullYear()} Kurzagin. All rights reserved.</span>
+          </div>
+          <div className="docs-footer-right">
+            <a
+              href="https://kurzagin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="docs-footer-link"
+            >
+              <span>kurzagin.com</span>
+              <ExternalLink size={11} />
+            </a>
+            <span className="docs-footer-badge">Apache-2.0 License</span>
+          </div>
         </footer>
       </main>
 
