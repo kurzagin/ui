@@ -121,93 +121,29 @@ export default function HomePage() {
           <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
             <div className="component-header">
               <span className="component-name">Brand &amp; Assets</span>
-              <div className="component-header-tags">
-                <Badge variant="accent">Vector SVG</Badge>
-                <Badge variant="purple">Android</Badge>
-                <Badge variant="outline">ICO</Badge>
-              </div>
             </div>
 
-            {/* Sub-section 1: React Component Variants */}
-            <div className="asset-sub-header">
-              &gt; React &lt;Logo /&gt; Variants
-            </div>
-            <div className="preview-box" style={{ gap: '16px', flexWrap: 'wrap', padding: '14px 8px' }}>
+            <div className="preview-box" style={{ gap: '20px', flexWrap: 'wrap', padding: '16px 12px' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <Logo size={32} variant="default" />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Default</span>
+                <Logo size={36} variant="default" />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Logo</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <Logo size={32} variant="accent" />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Accent</span>
+                <Logo size={36} variant="badge" />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>HUD Badge</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <Logo size={32} variant="purple" />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Alley</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <Logo size={32} variant="teal" />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Teal</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <Logo size={32} variant="minimal" />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Minimal</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <Logo size={32} variant="monochrome" />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Mono</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <Logo size={32} variant="badge" />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>HUD Ring</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <Logo size={32} variant="purple" withRing />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Alley Ring</span>
-              </div>
-            </div>
-
-            {/* Sub-section 2: Native Mobile & Favicon Assets */}
-            <div className="asset-sub-header" style={{ borderTop: '1px solid var(--kz-border-subtle)' }}>
-              &gt; Native Icons &amp; Favicon Formats
-            </div>
-            <div className="preview-box asset-preview-scroll">
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-                <img src="/logo-badge.svg" alt="Amber Badge SVG" width={40} height={40} />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>badge.svg</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-                <img src="/logo-alley.svg" alt="Alley Purple SVG" width={40} height={40} />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>alley.svg</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-                <img src="/icon-alley.png" alt="Mobile Alley 1024" width={40} height={40} style={{ borderRadius: '8px' }} />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>alley.png</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
                 <img src="/apple-touch-icon.png" alt="Apple Touch Icon" width={36} height={36} style={{ borderRadius: '7px' }} />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>apple-180</span>
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>App Icon</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-                <img src="/pwa-192x192.png" alt="PWA 192" width={32} height={32} style={{ borderRadius: '6px' }} />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>pwa-192</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-                <img src="/favicon-48x48.png" alt="Favicon 48" width={28} height={28} />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>fav-48</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-                <img src="/favicon-32x32.png" alt="Favicon 32" width={22} height={22} />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>fav-32</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-                <img src="/favicon-16x16.png" alt="Favicon 16" width={16} height={16} />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>fav-16</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <img src="/favicon-32x32.png" alt="Favicon 32" width={24} height={24} />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Favicon</span>
               </div>
             </div>
 
             <div className="code-box">
-              {`// React:\n<Logo size={28} variant="accent" />\n<Logo size={28} variant="purple" withRing />\n\n// Static:\nfavicon.ico, logo.svg, icon-alley.png, pwa-192x192.png`}
+              {`// React: <Logo size={36} variant="default" withRing />\n// Static: favicon.ico, logo.svg, icon-alley.png, pwa-192x192.png`}
             </div>
           </BracketCard>
 
@@ -215,7 +151,6 @@ export default function HomePage() {
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">Button</span>
-              <Badge variant="accent">Interactive</Badge>
             </div>
             <div className="preview-box">
               <Button variant="primary">Execute</Button>
@@ -231,7 +166,6 @@ export default function HomePage() {
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">BracketCard</span>
-              <Badge variant="teal">Surface</Badge>
             </div>
             <div className="preview-box">
               <BracketCard style={{ padding: '16px', width: '100%' }}>
@@ -249,7 +183,6 @@ export default function HomePage() {
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">CornerFrame</span>
-              <Badge variant="teal">Surface</Badge>
             </div>
             <div className="preview-box">
               <CornerFrame style={{ padding: '16px', width: '100%' }}>
@@ -263,30 +196,23 @@ export default function HomePage() {
             </div>
           </BracketCard>
 
-          {/* Vinyl Disc Player with Multiple Layouts & Variants */}
+          {/* Vinyl Disc Player */}
           <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
             <div className="component-header">
-              <span className="component-name">Vinyl Audio Deck Layouts</span>
-              <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
-                <Badge variant="purple">Turntable</Badge>
-                <Badge variant="accent">Mini Player</Badge>
-                <Badge variant="teal">Album Sleeve</Badge>
-                <Badge variant="outline">Disc</Badge>
-              </div>
+              <span className="component-name">Vinyl Audio Deck</span>
             </div>
             
             <div className="preview-box" style={{ flexDirection: 'column', gap: '20px', alignItems: 'stretch' }}>
-              {/* Row 1: Turntable Card Layout & Sleeve Layout */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', width: '100%' }}>
                 {/* Turntable Deck Layout */}
                 <Vinyl
                   layout="turntable"
-                  variant="alley"
+                  variant="default"
                   size="md"
-                  label="OPUS"
+                  label="AMBER"
                   title="CYBER_SYMPHONY_01"
                   artist="Kurzagin Systems"
-                  album="ALLEY_CORE"
+                  album="CORE_AUDIO"
                   rpm="33"
                   playing={isVinylPlaying}
                   controls={
@@ -296,21 +222,18 @@ export default function HomePage() {
                       onClick={() => setIsVinylPlaying(!isVinylPlaying)}
                     >
                       {isVinylPlaying ? <Pause size={12} /> : <Play size={12} />}
-                      <span>{isVinylPlaying ? 'Stop Turntable' : 'Engage Tonearm'}</span>
+                      <span>{isVinylPlaying ? 'Stop Turntable' : 'Spin Turntable'}</span>
                     </Button>
                   }
                 />
 
                 {/* Album Sleeve Peek Layout */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
-                  <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>
-                    &gt; SLEEVE PEEK LAYOUT (HOVER / CLICK)
-                  </span>
                   <Vinyl
                     layout="sleeve"
-                    variant="teal"
+                    variant="default"
                     size="sm"
-                    label="FLAC"
+                    label="CRATE"
                     title="CYBER CRATE"
                     artist="VA // 2026"
                     playing={isVinylPlaying}
@@ -322,14 +245,11 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Row 2: Mini Row Player Layout */}
+              {/* Mini Row Player Layout */}
               <div style={{ width: '100%' }}>
-                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)', display: 'block', marginBottom: '8px' }}>
-                  &gt; MINI AUDIO DOCK ROW (MOBILE SHEET / SIDEBAR)
-                </span>
                 <Vinyl
                   layout="mini"
-                  variant="gold"
+                  variant="default"
                   size="sm"
                   label="KRZ"
                   title="Sumerian Cuneiform Frequencies"
@@ -348,34 +268,10 @@ export default function HomePage() {
                   }
                 />
               </div>
-
-              {/* Row 3: Pure Disc Color Variants */}
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center', paddingTop: '10px', borderTop: '1px dashed var(--kz-border-subtle)' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
-                  <Vinyl size="sm" variant="default" label="AMBER" playing={isVinylPlaying} />
-                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-3)' }}>Amber Disc</span>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
-                  <Vinyl size="sm" variant="alley" label="ALLEY" playing={isVinylPlaying} />
-                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-3)' }}>Alley Disc</span>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
-                  <Vinyl size="sm" variant="teal" label="TEAL" playing={isVinylPlaying} />
-                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-3)' }}>Teal Disc</span>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
-                  <Vinyl size="sm" variant="gold" label="GOLD" playing={isVinylPlaying} />
-                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-3)' }}>Gold Disc</span>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
-                  <Vinyl size="sm" variant="hologram" label="HOLO" playing={isVinylPlaying} />
-                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-3)' }}>Hologram</span>
-                </div>
-              </div>
             </div>
 
             <div className="code-box">
-              {`// Full Turntable Deck:\n<Vinyl layout="turntable" variant="alley" title="TRACK" artist="ARTIST" playing={playing} />\n\n// Inline Mini Player:\n<Vinyl layout="mini" variant="gold" title="TRACK" playing={playing} controls={<Button />} />\n\n// Interactive Album Jacket Sleeve:\n<Vinyl layout="sleeve" variant="teal" title="JACKET" playing={playing} />`}
+              {`// Turntable: <Vinyl layout="turntable" variant="default" title="TRACK" playing={playing} />\n// Mini: <Vinyl layout="mini" variant="default" title="TRACK" playing={playing} />\n// Sleeve: <Vinyl layout="sleeve" variant="default" title="CRATE" />`}
             </div>
           </BracketCard>
 
@@ -383,7 +279,6 @@ export default function HomePage() {
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">StickyNote</span>
-              <Badge variant="default">Analog</Badge>
             </div>
             <div className="preview-box">
               <StickyNote
@@ -404,7 +299,6 @@ export default function HomePage() {
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">SpoilerGate</span>
-              <Badge variant="accent">Security</Badge>
             </div>
             <div className="preview-box" style={{ width: '100%', padding: '0' }}>
               <SpoilerGate
@@ -413,7 +307,7 @@ export default function HomePage() {
                 clearanceText="LVL-4"
               >
                 <div style={{ padding: '18px', textAlign: 'center', width: '100%' }}>
-                  <Badge variant="teal">ACCESS GRANTED</Badge>
+                  <Badge variant="accent">ACCESS GRANTED</Badge>
                   <p style={{ marginTop: '8px', fontSize: '12px' }}>Welcome operative.</p>
                 </div>
               </SpoilerGate>
@@ -426,13 +320,11 @@ export default function HomePage() {
           {/* Badge & Dot Component */}
           <BracketCard className="component-card">
             <div className="component-header">
-              <span className="component-name">Badge & Dot</span>
-              <Badge variant="teal">Status</Badge>
+              <span className="component-name">Badge &amp; Dot</span>
             </div>
             <div className="preview-box">
-              <Badge><Dot color="green" pulse /> Online</Badge>
-              <Badge variant="accent"><Dot color="accent" /> Active</Badge>
-              <Badge variant="teal"><Dot color="teal" /> Synced</Badge>
+              <Badge variant="accent"><Dot color="accent" pulse /> Online</Badge>
+              <Badge variant="outline"><Dot color="green" /> Synced</Badge>
               <Badge variant="purple"><Dot color="purple" /> Alley</Badge>
             </div>
             <div className="code-box">
@@ -444,7 +336,6 @@ export default function HomePage() {
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">TechLabel</span>
-              <Badge variant="teal">Typography</Badge>
             </div>
             <div className="preview-box">
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -461,7 +352,6 @@ export default function HomePage() {
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">Input</span>
-              <Badge variant="accent">Form</Badge>
             </div>
             <div className="preview-box" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
               <Input
@@ -482,24 +372,24 @@ export default function HomePage() {
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">TelemetryBar</span>
-              <Badge variant="teal">Feedback</Badge>
             </div>
             <div className="preview-box" style={{ flexDirection: 'column', gap: '14px', alignItems: 'stretch' }}>
               <TelemetryBar
                 label="BUFFER_INTEGRITY"
                 coord="CORE-A"
                 value={68}
+                variant="accent"
               />
               <TelemetryBar
                 label="MEMORY_ALLOCATION"
                 coord="VRAM"
                 value={45}
                 segmented
-                variant="teal"
+                variant="accent"
               />
             </div>
             <div className="code-box">
-              {`<TelemetryBar label="BUFFER" value={68} coord="CORE-A" />\n<TelemetryBar segmented variant="teal" value={45} />`}
+              {`<TelemetryBar label="BUFFER" value={68} coord="CORE-A" />\n<TelemetryBar segmented variant="accent" value={45} />`}
             </div>
           </BracketCard>
 
@@ -507,13 +397,12 @@ export default function HomePage() {
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">TerminalWindow</span>
-              <Badge variant="purple">Surface</Badge>
             </div>
             <div className="preview-box" style={{ padding: '0', background: 'transparent', border: 'none' }}>
               <TerminalWindow
                 title="cluster_daemon.sh"
                 badge="V-2.4"
-                code={`#!/bin/bash\nexport THEME="alley"\nkurzagin --status:optimal --node:01`}
+                code={`#!/bin/bash\nexport THEME="default"\nkurzagin --status:optimal --node:01`}
               />
             </div>
             <div className="code-box">
@@ -524,8 +413,7 @@ export default function HomePage() {
           {/* HudModal & Tooltip */}
           <BracketCard className="component-card">
             <div className="component-header">
-              <span className="component-name">HudModal & Tooltip</span>
-              <Badge variant="accent">Overlay</Badge>
+              <span className="component-name">HudModal &amp; Tooltip</span>
             </div>
             <div className="preview-box" style={{ gap: '14px' }}>
               <Tooltip content="Execute Node Handshake" coord="0xFA">
@@ -547,7 +435,6 @@ export default function HomePage() {
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">SegmentedControl</span>
-              <Badge variant="purple">Selector</Badge>
             </div>
             <div className="preview-box" style={{ flexDirection: 'column', gap: '12px' }}>
               <SegmentedControl
@@ -558,14 +445,14 @@ export default function HomePage() {
                 ]}
                 value={selectedFormat}
                 onChange={setSelectedFormat}
-                variant="purple"
+                variant="accent"
               />
               <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>
                 Active Target: {selectedFormat.toUpperCase()}
               </span>
             </div>
             <div className="code-box">
-              {`<SegmentedControl\n  options={[{ value: 'opus', label: 'OPUS' }, ...]}\n  value={format}\n  onChange={setFormat}\n  variant="purple"\n/>`}
+              {`<SegmentedControl\n  options={[{ value: 'opus', label: 'OPUS' }, ...]}\n  value={format}\n  onChange={setFormat}\n  variant="accent"\n/>`}
             </div>
           </BracketCard>
 
@@ -573,7 +460,6 @@ export default function HomePage() {
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">CyberSwitch</span>
-              <Badge variant="accent">Toggle</Badge>
             </div>
             <div className="preview-box" style={{ flexDirection: 'column', gap: '14px', alignItems: 'flex-start' }}>
               <CyberSwitch
@@ -581,13 +467,14 @@ export default function HomePage() {
                 onChange={setSwitch1}
                 label="CHAQUOPY ENGINE"
                 sublabel="On-device python audio daemon"
+                variant="default"
               />
               <CyberSwitch
                 checked={switch2}
                 onChange={setSwitch2}
-                label="ALLEY NEON MODE"
-                sublabel="Secondary purple luminescence"
-                variant="purple"
+                label="SECONDARY DAEMON"
+                sublabel="Optional background service"
+                variant="default"
               />
             </div>
             <div className="code-box">
@@ -599,7 +486,6 @@ export default function HomePage() {
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">KeyValGrid</span>
-              <Badge variant="outline">Telemetry</Badge>
             </div>
             <div className="preview-box" style={{ padding: '8px' }}>
               <KeyValGrid
@@ -608,7 +494,7 @@ export default function HomePage() {
                 items={[
                   { key: 'ENGINE_STATUS', value: 'ONLINE', status: 'success' },
                   { key: 'SAMPLE_RATE', value: '48,000 Hz', sub: 'PCM' },
-                  { key: 'BITRATE', value: '160 kbps', status: 'purple' },
+                  { key: 'BITRATE', value: '160 kbps' },
                   { key: 'CONTAINER', value: 'Ogg/Opus' },
                 ]}
               />
@@ -622,7 +508,6 @@ export default function HomePage() {
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">Breadcrumbs</span>
-              <Badge variant="accent">Trajectory</Badge>
             </div>
             <div className="preview-box">
               <Breadcrumbs
@@ -644,10 +529,6 @@ export default function HomePage() {
           <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
             <div className="component-header">
               <span className="component-name">TacticalDrawer &amp; HudToast</span>
-              <div style={{ display: 'flex', gap: '6px' }}>
-                <Badge variant="purple">Drawer</Badge>
-                <Badge variant="accent">Notification</Badge>
-              </div>
             </div>
             <div className="preview-box" style={{ gap: '14px' }}>
               <Button variant="outline" onClick={() => setIsDrawerOpen(true)}>
@@ -666,15 +547,11 @@ export default function HomePage() {
           <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
             <div className="component-header">
               <span className="component-name">BottomBar</span>
-              <div style={{ display: 'flex', gap: '6px' }}>
-                <Badge variant="purple">Alley</Badge>
-                <Badge variant="accent">Dock</Badge>
-              </div>
             </div>
             <div className="preview-box" style={{ padding: '0', background: 'transparent', border: 'none' }}>
               <BottomBar
                 fixed={false}
-                variant="alley"
+                variant="default"
                 activeId={activeTab}
                 onSelect={setActiveTab}
                 items={[
@@ -686,7 +563,7 @@ export default function HomePage() {
               />
             </div>
             <div className="code-box">
-              {`<BottomBar\n  variant="alley"\n  activeId={tab}\n  onSelect={setTab}\n  items={[\n    { id: 'home', label: 'Index', icon: <Home /> },\n    { id: 'audio', label: 'Audio', icon: <Disc3 />, badge: '3' },\n  ]}\n/>`}
+              {`<BottomBar\n  variant="default"\n  activeId={tab}\n  onSelect={setTab}\n  items={[\n    { id: 'home', label: 'Index', icon: <Home /> },\n    { id: 'audio', label: 'Audio', icon: <Disc3 />, badge: '3' },\n  ]}\n/>`}
             </div>
           </BracketCard>
         </div>
