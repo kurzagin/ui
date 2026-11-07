@@ -106,36 +106,90 @@ a:hover {
 }
 
 /* GitHub Nav Link - Perfectly fitted icon-first on mobile */
-.github-nav-link {
+.github-star-nav-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 6px;
   min-height: 30px;
-  padding: 0 8px;
+  padding: 0 10px;
   border-radius: var(--kz-radius-sm);
   border: 1px solid var(--kz-border);
   background: var(--kz-bg-1);
   color: var(--kz-text-0);
   font-family: var(--kz-mono);
   font-size: 11px;
-  transition: all 0.15s ease;
+  text-decoration: none;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
   flex-shrink: 0;
 }
 
-.github-nav-link:hover {
+.github-star-nav-btn:hover {
   border-color: var(--kz-accent);
   color: var(--kz-accent);
+  background: var(--kz-bg-2);
+  box-shadow: 0 0 10px var(--kz-accent-dim);
 }
 
-.github-text {
-  display: none;
+.github-star-nav-btn .star-icon,
+.hero-star-cta .star-icon {
+  color: var(--kz-accent);
+  fill: var(--kz-accent);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (min-width: 480px) {
-  .github-text {
-    display: inline;
+.github-star-nav-btn:hover .star-icon,
+.hero-star-cta:hover .star-icon {
+  transform: scale(1.15) rotate(12deg);
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+@media (min-width: 580px) {
+  .hero-cta-group {
+    flex-direction: row;
+    justify-content: center;
+    width: auto;
   }
+}
+
+.hero-star-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: var(--kz-radius-sm);
+  border: 1px solid var(--kz-border);
+  background: var(--kz-bg-1);
+  color: var(--kz-text-0);
+  font-family: var(--kz-mono);
+  font-size: 12px;
+  text-decoration: none;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.hero-star-cta:hover {
+  border-color: var(--kz-accent);
+  background: var(--kz-bg-2);
+  color: var(--kz-accent);
+  box-shadow: 0 4px 16px var(--kz-accent-dim);
+  transform: translateY(-1px);
+}
+
+.hero-star-cta:active {
+  transform: translateY(0);
 }
 
 .hero-section {
@@ -193,7 +247,7 @@ a:hover {
   border-radius: var(--kz-radius-sm);
   color: var(--kz-text-0);
   gap: 10px;
-  margin-bottom: 24px;
+  margin-bottom: 0;
   max-width: 100%;
   width: auto;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);

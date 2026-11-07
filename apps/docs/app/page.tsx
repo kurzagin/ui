@@ -25,7 +25,7 @@ import {
   HudToast,
   BottomBar,
 } from '@kurzagin/ui';
-import { Copy, Check, Terminal, ExternalLink, Sparkles, Play, Pause, ChevronUp, Home, Compass, Disc3, Settings, Code } from 'lucide-react';
+import { Copy, Check, Terminal, ExternalLink, Sparkles, Play, Pause, ChevronUp, Home, Compass, Disc3, Settings, Code, Star } from 'lucide-react';
 
 const THEMES = [
   { id: 'default', name: 'Amber', color: '#c49368' },
@@ -77,11 +77,11 @@ export default function HomePage() {
                 href="https://github.com/kurzagin/ui"
                 target="_blank"
                 rel="noreferrer"
-                className="github-nav-link"
-                aria-label="GitHub Repository"
+                className="github-star-nav-btn"
+                aria-label="Star kurzagin/ui on GitHub"
               >
-                <ExternalLink size={13} />
-                <span className="github-text">GitHub</span>
+                <Star size={12} className="star-icon" />
+                <span>Star on GitHub</span>
               </a>
             </div>
           </div>
@@ -107,26 +107,38 @@ export default function HomePage() {
             Zero lock-in, mobile-first, installable directly from GitHub.
           </p>
 
-          <div className="install-command-box">
-            <Terminal size={13} style={{ color: 'var(--kz-accent)', flexShrink: 0 }} />
-            <code>bun add github:kurzagin/ui</code>
-            <button
-              className={`copy-btn ${copiedKey === 'bun' ? 'copied' : ''}`}
-              onClick={() => copyToClipboard('bun add github:kurzagin/ui', 'bun')}
-              aria-label="Copy installation command"
+          <div className="hero-cta-group">
+            <div className="install-command-box">
+              <Terminal size={13} style={{ color: 'var(--kz-accent)', flexShrink: 0 }} />
+              <code>bun add github:kurzagin/ui</code>
+              <button
+                className={`copy-btn ${copiedKey === 'bun' ? 'copied' : ''}`}
+                onClick={() => copyToClipboard('bun add github:kurzagin/ui', 'bun')}
+                aria-label="Copy installation command"
+              >
+                {copiedKey === 'bun' ? (
+                  <>
+                    <Check size={11} />
+                    <span>Copied</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy size={11} />
+                    <span>Copy</span>
+                  </>
+                )}
+              </button>
+            </div>
+
+            <a
+              href="https://github.com/kurzagin/ui"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-star-cta"
             >
-              {copiedKey === 'bun' ? (
-                <>
-                  <Check size={11} />
-                  <span>Copied</span>
-                </>
-              ) : (
-                <>
-                  <Copy size={11} />
-                  <span>Copy</span>
-                </>
-              )}
-            </button>
+              <Star size={13} className="star-icon" />
+              <span>Star on GitHub</span>
+            </a>
           </div>
         </section>
 
