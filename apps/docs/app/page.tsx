@@ -269,7 +269,7 @@ export default function HomePage() {
             </div>
             
             <div className="preview-box" style={{ flexDirection: 'column', gap: '20px', alignItems: 'stretch' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', width: '100%' }}>
+              <div style={{ width: '100%' }}>
                 {/* Turntable Deck Layout */}
                 <Vinyl
                   layout="turntable"
@@ -292,23 +292,6 @@ export default function HomePage() {
                     </Button>
                   }
                 />
-
-                {/* Album Sleeve Peek Layout */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
-                  <Vinyl
-                    layout="sleeve"
-                    variant="default"
-                    size="sm"
-                    label="CRATE"
-                    title="CYBER CRATE"
-                    artist="VA // 2026"
-                    playing={isVinylPlaying}
-                    onClick={() => setIsVinylPlaying(!isVinylPlaying)}
-                  />
-                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-3)' }}>
-                    Tap jacket to pull record
-                  </span>
-                </div>
               </div>
 
               {/* Mini Row Player Layout */}
@@ -339,7 +322,7 @@ export default function HomePage() {
             {openCodes['vinyl'] && (
               <div className="code-collapse-panel">
                 <div className="code-box">
-              {`// Turntable: <Vinyl layout="turntable" variant="default" title="TRACK" playing={playing} />\n// Mini: <Vinyl layout="mini" variant="default" title="TRACK" playing={playing} />\n// Sleeve: <Vinyl layout="sleeve" variant="default" title="CRATE" />`}
+              {`// Turntable: <Vinyl layout="turntable" variant="default" title="TRACK" playing={playing} />\n// Mini: <Vinyl layout="mini" variant="default" title="TRACK" playing={playing} />\n// Disc: <Vinyl layout="disc" variant="default" playing={playing} />`}
             </div>
               </div>
             )}

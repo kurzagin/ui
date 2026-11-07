@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, ReactNode, forwardRef } from 'react';
 
-export type VinylLayout = 'disc' | 'card' | 'mini' | 'sleeve' | 'turntable';
+export type VinylLayout = 'disc' | 'card' | 'mini' | 'turntable';
 
 export interface VinylProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   size?: 'sm' | 'md' | 'lg';
@@ -10,7 +10,7 @@ export interface VinylProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'
   coverUrl?: string;
   label?: string;
   showRing?: boolean;
-  // Metadata for compound layouts (card, mini, sleeve, turntable)
+  // Metadata for compound layouts (card, mini, turntable)
   title?: ReactNode;
   artist?: ReactNode;
   album?: ReactNode;
@@ -150,33 +150,6 @@ export const Vinyl = forwardRef<HTMLDivElement, VinylProps>(
             </div>
             {controls && <div className="kz-vinyl-deck-controls">{controls}</div>}
           </div>
-        </div>
-      );
-    }
-
-    // 4. Sleeve Layout (Vinyl peeking out of its album jacket)
-    if (layout === 'sleeve') {
-      return (
-        <div
-          ref={ref}
-          className={`kz-vinyl-layout-sleeve kz-vinyl-${variant} ${
-            playing ? 'kz-peeking' : ''
-          } ${className}`.trim()}
-          onClick={onClick}
-          {...props}
-        >
-          <div className="kz-vinyl-jacket">
-            {coverUrl ? (
-              <img src={coverUrl} alt="Album Jacket" className="kz-jacket-art" />
-            ) : (
-              <div className="kz-jacket-placeholder">
-                <span className="kz-jacket-title">{title || label}</span>
-                <span className="kz-jacket-artist">{artist || 'AUDIO CRATE'}</span>
-              </div>
-            )}
-            <div className="kz-jacket-spine" />
-          </div>
-          <div className="kz-vinyl-sleeve-disc">{discElement}</div>
         </div>
       );
     }
