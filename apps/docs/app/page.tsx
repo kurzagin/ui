@@ -17,6 +17,12 @@ import {
   TerminalWindow,
   Tooltip,
   Logo,
+  SegmentedControl,
+  CyberSwitch,
+  KeyValGrid,
+  Breadcrumbs,
+  TacticalDrawer,
+  HudToast,
 } from '@kurzagin/ui';
 import { Copy, Check, Terminal, ExternalLink, Sparkles, Play, Pause, ChevronUp } from 'lucide-react';
 
@@ -34,6 +40,11 @@ export default function HomePage() {
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [demoInput, setDemoInput] = useState('');
+  const [selectedFormat, setSelectedFormat] = useState('opus');
+  const [switch1, setSwitch1] = useState(true);
+  const [switch2, setSwitch2] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isToastOpen, setIsToastOpen] = useState(false);
 
   const activeTheme = THEMES.find((t) => t.id === theme) || THEMES[0];
 
@@ -439,6 +450,125 @@ export default function HomePage() {
               {`<Tooltip content="Execute Node Handshake">\n  <Button onClick={() => setOpen(true)}>Open Modal</Button>\n</Tooltip>`}
             </div>
           </BracketCard>
+
+          {/* SegmentedControl Component */}
+          <BracketCard className="component-card">
+            <div className="component-header">
+              <span className="component-name">SegmentedControl</span>
+              <Badge variant="purple">Selector</Badge>
+            </div>
+            <div className="preview-box" style={{ flexDirection: 'column', gap: '12px' }}>
+              <SegmentedControl
+                options={[
+                  { value: 'opus', label: 'OPUS', sublabel: '48k' },
+                  { value: 'flac', label: 'FLAC', sublabel: 'Lossless', badge: 'HD' },
+                  { value: 'mp3', label: 'MP3', sublabel: '320k' },
+                ]}
+                value={selectedFormat}
+                onChange={setSelectedFormat}
+                variant="purple"
+              />
+              <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>
+                Active Target: {selectedFormat.toUpperCase()}
+              </span>
+            </div>
+            <div className="code-box">
+              {`<SegmentedControl\n  options={[{ value: 'opus', label: 'OPUS' }, ...]}\n  value={format}\n  onChange={setFormat}\n  variant="purple"\n/>`}
+            </div>
+          </BracketCard>
+
+          {/* CyberSwitch Component */}
+          <BracketCard className="component-card">
+            <div className="component-header">
+              <span className="component-name">CyberSwitch</span>
+              <Badge variant="accent">Toggle</Badge>
+            </div>
+            <div className="preview-box" style={{ flexDirection: 'column', gap: '14px', alignItems: 'flex-start' }}>
+              <CyberSwitch
+                checked={switch1}
+                onChange={setSwitch1}
+                label="CHAQUOPY ENGINE"
+                sublabel="On-device python audio daemon"
+              />
+              <CyberSwitch
+                checked={switch2}
+                onChange={setSwitch2}
+                label="ALLEY NEON MODE"
+                sublabel="Secondary purple luminescence"
+                variant="purple"
+              />
+            </div>
+            <div className="code-box">
+              {`<CyberSwitch\n  checked={enabled}\n  onChange={setEnabled}\n  label="CHAQUOPY ENGINE"\n  sublabel="On-device audio"\n/>`}
+            </div>
+          </BracketCard>
+
+          {/* KeyValGrid Component */}
+          <BracketCard className="component-card">
+            <div className="component-header">
+              <span className="component-name">KeyValGrid</span>
+              <Badge variant="outline">Telemetry</Badge>
+            </div>
+            <div className="preview-box" style={{ padding: '8px' }}>
+              <KeyValGrid
+                title="DIAGNOSTICS"
+                coord="SPEC // 0x4B"
+                items={[
+                  { key: 'ENGINE_STATUS', value: 'ONLINE', status: 'success' },
+                  { key: 'SAMPLE_RATE', value: '48,000 Hz', sub: 'PCM' },
+                  { key: 'BITRATE', value: '160 kbps', status: 'purple' },
+                  { key: 'CONTAINER', value: 'Ogg/Opus' },
+                ]}
+              />
+            </div>
+            <div className="code-box">
+              {`<KeyValGrid\n  title="DIAGNOSTICS"\n  items={[{ key: 'ENGINE', value: 'ONLINE', status: 'success' }]}\n/>`}
+            </div>
+          </BracketCard>
+
+          {/* Breadcrumbs Component */}
+          <BracketCard className="component-card">
+            <div className="component-header">
+              <span className="component-name">Breadcrumbs</span>
+              <Badge variant="accent">Trajectory</Badge>
+            </div>
+            <div className="preview-box">
+              <Breadcrumbs
+                prefix="ROOT //"
+                items={[
+                  { label: 'HOME', href: '#' },
+                  { label: 'LIBRARY', href: '#' },
+                  { label: 'AUDIO_CORE', href: '#' },
+                  { label: 'OPUS_v1.0.0', active: true },
+                ]}
+              />
+            </div>
+            <div className="code-box">
+              {`<Breadcrumbs\n  prefix="ROOT //"\n  items={[{ label: 'HOME', href: '#' }, { label: 'CORE', active: true }]}\n/>`}
+            </div>
+          </BracketCard>
+
+          {/* TacticalDrawer & HudToast Controls */}
+          <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
+            <div className="component-header">
+              <span className="component-name">TacticalDrawer &amp; HudToast</span>
+              <div style={{ display: 'flex', gap: '6px' }}>
+                <Badge variant="purple">Drawer</Badge>
+                <Badge variant="accent">Notification</Badge>
+              </div>
+            </div>
+            <div className="preview-box" style={{ gap: '14px' }}>
+              <Button variant="outline" onClick={() => setIsDrawerOpen(true)}>
+                Open Bottom Drawer
+              </Button>
+              <Button variant="primary" onClick={() => setIsToastOpen(true)}>
+                Trigger HUD Toast
+              </Button>
+            </div>
+            <div className="code-box">
+              {`<TacticalDrawer isOpen={open} onClose={() => setOpen(false)} position="bottom">\n  <Content />\n</TacticalDrawer>\n\n<HudToast isOpen={toast} onClose={() => setToast(false)} title="DOWNLOAD_COMPLETE" />`}
+            </div>
+          </BracketCard>
         </div>
 
         {/* Footer */}
@@ -490,6 +620,45 @@ export default function HomePage() {
           />
         </div>
       </HudModal>
+
+      {/* TacticalDrawer Demo Instance */}
+      <TacticalDrawer
+        isOpen={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+        title="SYSTEM_INSPECTOR"
+        coord="DRAWER // 0x4A"
+        sublabel="Tactical bottom inspector"
+        position="bottom"
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <p style={{ margin: 0, fontSize: '13px', color: 'var(--kz-text-1)' }}>
+            Real-time audio telemetry and hardware decoder allocation.
+          </p>
+          <KeyValGrid
+            items={[
+              { key: 'DECODER_CORE', value: 'Chaquopy v16.0', status: 'success' },
+              { key: 'BUFFER_STATE', value: 'OPTIMAL (4.2ms)', status: 'purple' },
+              { key: 'ENCRYPTION', value: 'TLS_AES_256_GCM' },
+            ]}
+          />
+          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
+            <Button size="sm" variant="outline" onClick={() => setIsDrawerOpen(false)}>
+              Dismiss
+            </Button>
+          </div>
+        </div>
+      </TacticalDrawer>
+
+      {/* HudToast Demo Instance */}
+      <HudToast
+        isOpen={isToastOpen}
+        onClose={() => setIsToastOpen(false)}
+        title="AUDIO_STREAM_READY"
+        description="Opus stream buffered at 48,000 Hz / Lossless."
+        variant="purple"
+        coord="HUD // 0xCC"
+        duration={4000}
+      />
 
       {/* Floating Theme Control */}
       <div className="floating-theme-dock">

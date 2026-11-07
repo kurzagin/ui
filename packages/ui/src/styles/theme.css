@@ -1114,3 +1114,655 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+/* ==========================================================================
+   SegmentedControl (Mode / Frequency Selector)
+   ========================================================================== */
+.kz-segmented-control {
+  display: inline-flex;
+  background: var(--kz-bg-0);
+  border: 1px solid var(--kz-border);
+  border-radius: var(--kz-radius-sm);
+  padding: 2px;
+  gap: 2px;
+  position: relative;
+}
+
+.kz-segmented-full {
+  display: flex;
+  width: 100%;
+}
+
+.kz-segmented-full .kz-segmented-item {
+  flex: 1;
+}
+
+.kz-segmented-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--kz-text-2);
+  font-family: var(--kz-mono);
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: var(--kz-radius-xs);
+  transition: all 0.15s ease;
+  position: relative;
+  user-select: none;
+}
+
+.kz-segmented-item:hover:not(.kz-disabled) {
+  color: var(--kz-text-0);
+  background: var(--kz-bg-1);
+}
+
+.kz-segmented-item.kz-active {
+  background: var(--kz-bg-2);
+  color: var(--kz-accent);
+  border-color: var(--kz-border-light);
+  box-shadow: 0 0 8px var(--kz-accent-dim);
+}
+
+.kz-segmented-purple .kz-segmented-item.kz-active {
+  color: var(--kz-purple);
+  box-shadow: 0 0 8px rgba(176, 102, 255, 0.2);
+}
+
+.kz-segmented-teal .kz-segmented-item.kz-active {
+  color: var(--kz-teal);
+  box-shadow: 0 0 8px rgba(80, 176, 176, 0.2);
+}
+
+.kz-segmented-item.kz-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.kz-segmented-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kz-segmented-label {
+  font-weight: 500;
+}
+
+.kz-segmented-sublabel {
+  font-size: 8px;
+  color: var(--kz-text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.kz-segmented-badge {
+  font-size: 9px;
+  padding: 1px 4px;
+  background: var(--kz-bg-3);
+  color: var(--kz-text-1);
+  border-radius: 2px;
+}
+
+.kz-segmented-bracket-l,
+.kz-segmented-bracket-r {
+  width: 2px;
+  height: 8px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.kz-segmented-sm .kz-segmented-item {
+  padding: 4px 8px;
+  font-size: 10px;
+}
+
+.kz-segmented-lg .kz-segmented-item {
+  padding: 10px 16px;
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   CyberSwitch (Tactical Interrupter)
+   ========================================================================== */
+.kz-switch-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.kz-switch-container.kz-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.kz-switch-track {
+  width: 44px;
+  height: 22px;
+  background: var(--kz-bg-0);
+  border: 1px solid var(--kz-border);
+  border-radius: var(--kz-radius-xs);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.kz-switch-container:hover:not(.kz-disabled) .kz-switch-track {
+  border-color: var(--kz-border-light);
+}
+
+.kz-switch-thumb {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  background: var(--kz-border-light);
+  border-radius: 1px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kz-switch-thumb-grip {
+  width: 2px;
+  height: 8px;
+  background: var(--kz-bg-0);
+  opacity: 0.8;
+}
+
+.kz-switch-state-text {
+  font-family: var(--kz-mono);
+  font-size: 8px;
+  font-weight: bold;
+  color: var(--kz-text-3);
+}
+
+.kz-switch-container.kz-checked .kz-switch-track {
+  border-color: var(--kz-accent);
+  background: var(--kz-bg-1);
+  box-shadow: 0 0 8px var(--kz-accent-dim);
+}
+
+.kz-switch-container.kz-checked .kz-switch-thumb {
+  left: calc(100% - 18px);
+  background: var(--kz-accent);
+}
+
+.kz-switch-purple.kz-checked .kz-switch-track {
+  border-color: var(--kz-purple);
+  box-shadow: 0 0 8px rgba(176, 102, 255, 0.2);
+}
+
+.kz-switch-purple.kz-checked .kz-switch-thumb {
+  background: var(--kz-purple);
+}
+
+.kz-switch-teal.kz-checked .kz-switch-track {
+  border-color: var(--kz-teal);
+  box-shadow: 0 0 8px rgba(80, 176, 176, 0.2);
+}
+
+.kz-switch-teal.kz-checked .kz-switch-thumb {
+  background: var(--kz-teal);
+}
+
+.kz-switch-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.kz-switch-label {
+  font-family: var(--kz-mono);
+  font-size: 12px;
+  color: var(--kz-text-0);
+}
+
+.kz-switch-sublabel {
+  font-family: var(--kz-mono);
+  font-size: 9px;
+  color: var(--kz-text-3);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   KeyValGrid (Cyber Telemetry Spec Table)
+   ========================================================================== */
+.kz-keyval-grid {
+  background: var(--kz-bg-0);
+  border: 1px solid var(--kz-border);
+  border-radius: var(--kz-radius-sm);
+  padding: 12px 14px;
+  width: 100%;
+}
+
+.kz-keyval-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px dashed var(--kz-border-subtle);
+}
+
+.kz-keyval-title {
+  font-family: var(--kz-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--kz-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.kz-keyval-coord {
+  font-family: var(--kz-mono);
+  font-size: 9px;
+  color: var(--kz-text-3);
+}
+
+.kz-keyval-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kz-keyval-cols-2 .kz-keyval-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 16px;
+}
+
+@media (max-width: 640px) {
+  .kz-keyval-cols-2 .kz-keyval-list {
+    grid-template-columns: 100%;
+  }
+}
+
+.kz-keyval-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  font-family: var(--kz-mono);
+  font-size: 11px;
+}
+
+.kz-keyval-key {
+  color: var(--kz-text-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.kz-keyval-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--kz-text-3);
+}
+
+.kz-keyval-dot.kz-dot-success { background: var(--kz-green-soft); }
+.kz-keyval-dot.kz-dot-warning { background: var(--kz-amber-soft); }
+.kz-keyval-dot.kz-dot-alert { background: var(--kz-red-soft); }
+.kz-keyval-dot.kz-dot-purple { background: var(--kz-purple); }
+
+.kz-keyval-leader {
+  flex: 1;
+  border-bottom: 1px dotted var(--kz-border-subtle);
+  margin: 0 4px;
+  position: relative;
+  top: -3px;
+}
+
+.kz-keyval-val {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.kz-keyval-val-main {
+  color: var(--kz-text-0);
+  font-weight: 500;
+}
+
+.kz-keyval-val-sub {
+  font-size: 9px;
+  color: var(--kz-text-3);
+}
+
+/* ==========================================================================
+   Breadcrumbs (CLI Trajectory)
+   ========================================================================== */
+.kz-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--kz-mono);
+  font-size: 11px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.kz-breadcrumb-prefix {
+  color: var(--kz-accent);
+  font-weight: 600;
+  user-select: none;
+}
+
+.kz-breadcrumb-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 6px;
+}
+
+.kz-breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--kz-text-2);
+}
+
+.kz-breadcrumb-separator {
+  color: var(--kz-text-3);
+  user-select: none;
+}
+
+.kz-breadcrumb-link,
+.kz-breadcrumb-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--kz-text-1);
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  transition: color 0.15s ease;
+}
+
+.kz-breadcrumb-link:hover,
+.kz-breadcrumb-button:hover {
+  color: var(--kz-accent);
+}
+
+.kz-breadcrumb-current {
+  color: var(--kz-text-0);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   TacticalDrawer (Sheet / Slide-out Inspector)
+   ========================================================================== */
+.kz-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 8, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+}
+
+.kz-drawer-bottom {
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.kz-drawer-right {
+  align-items: stretch;
+  justify-content: flex-end;
+}
+
+.kz-drawer-panel {
+  background: var(--kz-bg-1);
+  border: 1px solid var(--kz-border);
+  position: relative;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+}
+
+.kz-drawer-panel-bottom {
+  width: 100%;
+  max-width: 600px;
+  max-height: 85vh;
+  border-top-left-radius: var(--kz-radius-md);
+  border-top-right-radius: var(--kz-radius-md);
+  border-bottom: none;
+  animation: kz-drawer-slide-up 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kz-drawer-panel-right {
+  width: 100%;
+  max-width: 380px;
+  height: 100%;
+  border-right: none;
+  animation: kz-drawer-slide-left 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes kz-drawer-slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes kz-drawer-slide-left {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.kz-drawer-handle-bar {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 4px;
+  cursor: pointer;
+}
+
+.kz-drawer-handle-pill {
+  width: 36px;
+  height: 4px;
+  background: var(--kz-border-light);
+  border-radius: 2px;
+}
+
+.kz-drawer-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--kz-border);
+}
+
+.kz-drawer-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.kz-drawer-coord {
+  font-family: var(--kz-mono);
+  font-size: 9px;
+  color: var(--kz-accent);
+  letter-spacing: 0.8px;
+}
+
+.kz-drawer-title {
+  margin: 0;
+  font-family: var(--kz-mono);
+  font-size: 14px;
+  color: var(--kz-text-0);
+  font-weight: 600;
+}
+
+.kz-drawer-sublabel {
+  font-family: var(--kz-mono);
+  font-size: 9px;
+  color: var(--kz-text-3);
+  text-transform: uppercase;
+}
+
+.kz-drawer-close-btn {
+  background: transparent;
+  border: 1px solid var(--kz-border);
+  color: var(--kz-text-2);
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--kz-radius-xs);
+  cursor: pointer;
+  font-family: var(--kz-mono);
+  font-size: 11px;
+}
+
+.kz-drawer-close-btn:hover {
+  border-color: var(--kz-accent);
+  color: var(--kz-accent);
+}
+
+.kz-drawer-body {
+  padding: 16px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* ==========================================================================
+   HudToast (Tactical Alert Callout)
+   ========================================================================== */
+.kz-hud-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 1100;
+  max-width: calc(100vw - 48px);
+  width: 340px;
+  background: var(--kz-bg-1);
+  border: 1px solid var(--kz-border);
+  border-radius: var(--kz-radius-sm);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  animation: kz-toast-pop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+@keyframes kz-toast-pop {
+  from { opacity: 0; transform: translateY(12px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.kz-toast-inner {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px 12px;
+  gap: 8px;
+  position: relative;
+}
+
+.kz-toast-bracket-l,
+.kz-toast-bracket-r {
+  width: 2px;
+  height: 12px;
+  background: var(--kz-accent);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.kz-toast-purple .kz-toast-bracket-l,
+.kz-toast-purple .kz-toast-bracket-r { background: var(--kz-purple); }
+
+.kz-toast-teal .kz-toast-bracket-l,
+.kz-toast-teal .kz-toast-bracket-r { background: var(--kz-teal); }
+
+.kz-toast-alert .kz-toast-bracket-l,
+.kz-toast-alert .kz-toast-bracket-r { background: var(--kz-red-soft); }
+
+.kz-toast-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.kz-toast-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kz-toast-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--kz-accent);
+  box-shadow: 0 0 4px var(--kz-accent);
+}
+
+.kz-toast-purple .kz-toast-dot { background: var(--kz-purple); box-shadow: 0 0 4px var(--kz-purple); }
+.kz-toast-teal .kz-toast-dot { background: var(--kz-teal); box-shadow: 0 0 4px var(--kz-teal); }
+.kz-toast-alert .kz-toast-dot { background: var(--kz-red-soft); box-shadow: 0 0 4px var(--kz-red-soft); }
+
+.kz-toast-coord {
+  font-family: var(--kz-mono);
+  font-size: 8px;
+  color: var(--kz-text-3);
+  letter-spacing: 0.8px;
+}
+
+.kz-toast-title {
+  font-family: var(--kz-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--kz-text-0);
+}
+
+.kz-toast-desc {
+  font-family: var(--kz-sans);
+  font-size: 11px;
+  color: var(--kz-text-2);
+  line-height: 1.35;
+}
+
+.kz-toast-dismiss {
+  background: transparent;
+  border: none;
+  color: var(--kz-text-3);
+  cursor: pointer;
+  font-size: 10px;
+  padding: 2px 4px;
+}
+
+.kz-toast-dismiss:hover {
+  color: var(--kz-text-0);
+}
+
+.kz-toast-progress-track {
+  height: 2px;
+  background: var(--kz-bg-0);
+  width: 100%;
+}
+
+.kz-toast-progress-bar {
+  height: 100%;
+  background: var(--kz-accent);
+  transition: width 0.05s linear;
+}
+
+.kz-toast-purple .kz-toast-progress-bar { background: var(--kz-purple); }
+.kz-toast-teal .kz-toast-progress-bar { background: var(--kz-teal); }
+.kz-toast-alert .kz-toast-progress-bar { background: var(--kz-red-soft); }
