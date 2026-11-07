@@ -263,50 +263,119 @@ export default function HomePage() {
             </div>
           </BracketCard>
 
-          {/* Vinyl Disc Player with Variants */}
-          <BracketCard className="component-card">
+          {/* Vinyl Disc Player with Multiple Layouts & Variants */}
+          <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
             <div className="component-header">
-              <span className="component-name">Vinyl Variants</span>
-              <div style={{ display: 'flex', gap: '4px' }}>
-                <Badge variant="purple">Alley</Badge>
-                <Badge variant="teal">Teal</Badge>
-                <Badge variant="accent">Gold</Badge>
+              <span className="component-name">Vinyl Audio Deck Layouts</span>
+              <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+                <Badge variant="purple">Turntable</Badge>
+                <Badge variant="accent">Mini Player</Badge>
+                <Badge variant="teal">Album Sleeve</Badge>
+                <Badge variant="outline">Disc</Badge>
               </div>
             </div>
-            <div className="preview-box" style={{ flexDirection: 'column', gap: '14px' }}>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+            
+            <div className="preview-box" style={{ flexDirection: 'column', gap: '20px', alignItems: 'stretch' }}>
+              {/* Row 1: Turntable Card Layout & Sleeve Layout */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', width: '100%' }}>
+                {/* Turntable Deck Layout */}
+                <Vinyl
+                  layout="turntable"
+                  variant="alley"
+                  size="md"
+                  label="OPUS"
+                  title="CYBER_SYMPHONY_01"
+                  artist="Kurzagin Systems"
+                  album="ALLEY_CORE"
+                  rpm="33"
+                  playing={isVinylPlaying}
+                  controls={
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      onClick={() => setIsVinylPlaying(!isVinylPlaying)}
+                    >
+                      {isVinylPlaying ? <Pause size={12} /> : <Play size={12} />}
+                      <span>{isVinylPlaying ? 'Stop Turntable' : 'Engage Tonearm'}</span>
+                    </Button>
+                  }
+                />
+
+                {/* Album Sleeve Peek Layout */}
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
+                  <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>
+                    &gt; SLEEVE PEEK LAYOUT (HOVER / CLICK)
+                  </span>
+                  <Vinyl
+                    layout="sleeve"
+                    variant="teal"
+                    size="sm"
+                    label="FLAC"
+                    title="CYBER CRATE"
+                    artist="VA // 2026"
+                    playing={isVinylPlaying}
+                    onClick={() => setIsVinylPlaying(!isVinylPlaying)}
+                  />
+                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-3)' }}>
+                    Tap jacket to pull record
+                  </span>
+                </div>
+              </div>
+
+              {/* Row 2: Mini Row Player Layout */}
+              <div style={{ width: '100%' }}>
+                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)', display: 'block', marginBottom: '8px' }}>
+                  &gt; MINI AUDIO DOCK ROW (MOBILE SHEET / SIDEBAR)
+                </span>
+                <Vinyl
+                  layout="mini"
+                  variant="gold"
+                  size="sm"
+                  label="KRZ"
+                  title="Sumerian Cuneiform Frequencies"
+                  artist="Dingir Core"
+                  album="Master Press"
+                  rpm="45"
+                  playing={isVinylPlaying}
+                  controls={
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setIsVinylPlaying(!isVinylPlaying)}
+                    >
+                      {isVinylPlaying ? <Pause size={12} /> : <Play size={12} />}
+                    </Button>
+                  }
+                />
+              </div>
+
+              {/* Row 3: Pure Disc Color Variants */}
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center', paddingTop: '10px', borderTop: '1px dashed var(--kz-border-subtle)' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
                   <Vinyl size="sm" variant="default" label="AMBER" playing={isVinylPlaying} />
-                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Default</span>
+                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-3)' }}>Amber Disc</span>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
                   <Vinyl size="sm" variant="alley" label="ALLEY" playing={isVinylPlaying} />
-                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Alley</span>
+                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-3)' }}>Alley Disc</span>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
                   <Vinyl size="sm" variant="teal" label="TEAL" playing={isVinylPlaying} />
-                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Teal</span>
+                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-3)' }}>Teal Disc</span>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
                   <Vinyl size="sm" variant="gold" label="GOLD" playing={isVinylPlaying} />
-                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Gold</span>
+                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-3)' }}>Gold Disc</span>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
                   <Vinyl size="sm" variant="hologram" label="HOLO" playing={isVinylPlaying} />
-                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Holo</span>
+                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-3)' }}>Hologram</span>
                 </div>
               </div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setIsVinylPlaying(!isVinylPlaying)}
-              >
-                {isVinylPlaying ? <Pause size={12} /> : <Play size={12} />}
-                <span>{isVinylPlaying ? 'Pause All' : 'Spin All'}</span>
-              </Button>
             </div>
+
             <div className="code-box">
-              {`<Vinyl variant="alley" label="ALLEY" playing={playing} />\n<Vinyl variant="gold" label="GOLD" playing={playing} />`}
+              {`// Full Turntable Deck:\n<Vinyl layout="turntable" variant="alley" title="TRACK" artist="ARTIST" playing={playing} />\n\n// Inline Mini Player:\n<Vinyl layout="mini" variant="gold" title="TRACK" playing={playing} controls={<Button />} />\n\n// Interactive Album Jacket Sleeve:\n<Vinyl layout="sleeve" variant="teal" title="JACKET" playing={playing} />`}
             </div>
           </BracketCard>
 

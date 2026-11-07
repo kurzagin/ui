@@ -1,12 +1,21 @@
-import React, { HTMLAttributes, forwardRef } from 'react';
+import React, { HTMLAttributes, ReactNode, forwardRef } from 'react';
 
-export interface VinylProps extends HTMLAttributes<HTMLDivElement> {
+export type VinylLayout = 'disc' | 'card' | 'mini' | 'sleeve' | 'turntable';
+
+export interface VinylProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   size?: 'sm' | 'md' | 'lg';
   variant?: 'default' | 'alley' | 'teal' | 'gold' | 'hologram';
+  layout?: VinylLayout;
   playing?: boolean;
   coverUrl?: string;
   label?: string;
   showRing?: boolean;
+  // Metadata for compound layouts (card, mini, sleeve, turntable)
+  title?: ReactNode;
+  artist?: ReactNode;
+  album?: ReactNode;
+  rpm?: '33' | '45' | '78';
+  controls?: ReactNode;
 }
 
 export const Vinyl = forwardRef<HTMLDivElement, VinylProps>(
@@ -14,22 +23,27 @@ export const Vinyl = forwardRef<HTMLDivElement, VinylProps>(
     {
       size = 'md',
       variant = 'default',
+      layout = 'disc',
       playing = false,
       coverUrl,
       label = 'KRZ',
       showRing = true,
+      title,
+      artist,
+      album,
+      rpm = '33',
+      controls,
       className = '',
       onClick,
       ...props
     },
     ref
   ) => {
-    return (
+    // Pure Disc Element
+    const discElement = (
       <div
-        ref={ref}
-        className={`kz-vinyl-area kz-vinyl-${size} kz-vinyl-${variant} ${className}`.trim()}
+        className={`kz-vinyl-area kz-vinyl-${size} kz-vinyl-${variant}`}
         onClick={onClick}
-        {...props}
       >
         {showRing && <div className="kz-vinyl-ring" aria-hidden="true" />}
         <div className={`kz-vinyl ${playing ? 'playing' : ''}`}>
@@ -49,6 +63,125 @@ export const Vinyl = forwardRef<HTMLDivElement, VinylProps>(
         </div>
       </div>
     );
+
+    // 1. Pure Disc Layout (Default)
+    if (layout === 'disc') {
+      return (
+        <div
+          ref={ref}
+          className={`kz-vinyl-wrapper kz-layout-disc ${className}`.trim()}
+          {...props}
+        >
+          {discElement}
+        </div>
+      );
+    }
+
+    // 2. Mini Player Row (Compact inline player with track info)
+    if (layout === 'mini') {
+      return (
+        <div
+          ref={ref}
+          className={`kz-vinyl-layout-mini kz-vinyl-${variant} ${
+            playing ? 'kz-playing' : ''
+          } ${className}`.trim()}
+          {...props}
+        >
+          <div className="kz-vinyl-mini-disc">{discElement}</div>
+          <div className="kz-vinyl-mini-info">
+            <div className="kz-vinyl-mini-status">
+              <span className={`kz-vinyl-pulse ${playing ? 'kz-pulse-active' : ''}`} />
+              <span className="kz-vinyl-status-text">
+                {playing ? 'NOW PLAYING' : 'STANDBY'}
+              </span>
+              <span className="kz-vinyl-rpm-tag">{rpm} RPM</span>
+            </div>
+            {title && <div className="kz-vinyl-mini-title">{title}</div>}
+            {(artist || album) && (
+              <div className="kz-vinyl-mini-artist">
+                {artist}
+                {album && ` — [${album}]`}
+              </div>
+            )}
+          </div>
+          {controls && <div className="kz-vinyl-mini-controls">{controls}</div>}
+        </div>
+      );
+    }
+
+    // 3. Card / Turntable Player Layout (Full Deck)
+    if (layout === 'card' || layout === 'turntable') {
+      return (
+        <div
+          ref={ref}
+          className={`kz-vinyl-layout-card kz-vinyl-${variant} ${
+            playing ? 'kz-playing' : ''
+          } ${className}`.trim()}
+          {...props}
+        >
+          <div className="kz-vinyl-deck-header">
+            <span className="kz-vinyl-deck-tag">HI-FI DECK // {rpm} RPM</span>
+            <span className="kz-vinyl-deck-status">
+              <span className={`kz-vinyl-pulse ${playing ? 'kz-pulse-active' : ''}`} />
+              {playing ? 'ACTIVE_PLAYBACK' : 'IDLE'}
+            </span>
+          </div>
+
+          <div className="kz-vinyl-deck-center">
+            {discElement}
+            {layout === 'turntable' && (
+              <div className={`kz-turntable-tonearm ${playing ? 'engaged' : ''}`}>
+                <div className="kz-tonearm-pivot" />
+                <div className="kz-tonearm-rod" />
+                <div className="kz-tonearm-head" />
+              </div>
+            )}
+          </div>
+
+          <div className="kz-vinyl-deck-footer">
+            <div className="kz-vinyl-deck-meta">
+              {title && <div className="kz-vinyl-deck-title">{title}</div>}
+              {(artist || album) && (
+                <div className="kz-vinyl-deck-artist">
+                  {artist}
+                  {album && ` — [${album}]`}
+                </div>
+              )}
+            </div>
+            {controls && <div className="kz-vinyl-deck-controls">{controls}</div>}
+          </div>
+        </div>
+      );
+    }
+
+    // 4. Sleeve Layout (Vinyl peeking out of its album jacket)
+    if (layout === 'sleeve') {
+      return (
+        <div
+          ref={ref}
+          className={`kz-vinyl-layout-sleeve kz-vinyl-${variant} ${
+            playing ? 'kz-peeking' : ''
+          } ${className}`.trim()}
+          onClick={onClick}
+          {...props}
+        >
+          <div className="kz-vinyl-jacket">
+            {coverUrl ? (
+              <img src={coverUrl} alt="Album Jacket" className="kz-jacket-art" />
+            ) : (
+              <div className="kz-jacket-placeholder">
+                <span className="kz-jacket-title">{title || label}</span>
+                <span className="kz-jacket-artist">{artist || 'AUDIO CRATE'}</span>
+              </div>
+            )}
+            <div className="kz-jacket-spine" />
+          </div>
+          <div className="kz-vinyl-sleeve-disc">{discElement}</div>
+        </div>
+      );
+    }
+
+    return discElement;
   }
 );
 
