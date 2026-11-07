@@ -71,19 +71,6 @@ export default function HomePage() {
               <Logo size={18} variant="accent" />
               <span>kurzagin/ui</span>
             </a>
-
-            <div className="header-actions">
-              <a
-                href="https://github.com/kurzagin/ui"
-                target="_blank"
-                rel="noreferrer"
-                className="github-star-nav-btn"
-                aria-label="Star kurzagin/ui on GitHub"
-              >
-                <Star size={12} className="star-icon" />
-                <span>Star on GitHub</span>
-              </a>
-            </div>
           </div>
         </div>
       </header>

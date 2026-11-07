@@ -81,66 +81,25 @@ a:hover {
 .header-inner {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 8px;
-}
-
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
 }
 
 .brand-link {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   font-family: var(--kz-mono);
   font-size: 13px;
   font-weight: 500;
   color: var(--kz-text-0);
   white-space: nowrap;
-  flex-shrink: 0;
+  letter-spacing: 0.5px;
+  transition: opacity 0.15s ease;
 }
 
-/* GitHub Nav Link - Perfectly fitted icon-first on mobile */
-.github-star-nav-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  min-height: 30px;
-  padding: 0 10px;
-  border-radius: var(--kz-radius-sm);
-  border: 1px solid var(--kz-border);
-  background: var(--kz-bg-1);
-  color: var(--kz-text-0);
-  font-family: var(--kz-mono);
-  font-size: 11px;
-  text-decoration: none;
-  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-  flex-shrink: 0;
-}
-
-.github-star-nav-btn:hover {
-  border-color: var(--kz-accent);
-  color: var(--kz-accent);
-  background: var(--kz-bg-2);
-  box-shadow: 0 0 10px var(--kz-accent-dim);
-}
-
-.github-star-nav-btn .star-icon,
-.hero-star-cta .star-icon {
-  color: var(--kz-accent);
-  fill: var(--kz-accent);
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.github-star-nav-btn:hover .star-icon,
-.hero-star-cta:hover .star-icon {
-  transform: scale(1.15) rotate(12deg);
+.brand-link:hover {
+  opacity: 0.85;
 }
 
 .hero-cta-group {
@@ -190,6 +149,16 @@ a:hover {
 
 .hero-star-cta:active {
   transform: translateY(0);
+}
+
+.hero-star-cta .star-icon {
+  color: var(--kz-accent);
+  fill: var(--kz-accent);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-star-cta:hover .star-icon {
+  transform: scale(1.15) rotate(12deg);
 }
 
 .hero-section {
