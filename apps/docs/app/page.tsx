@@ -111,11 +111,21 @@ export default function HomePage() {
             <Terminal size={13} style={{ color: 'var(--kz-accent)', flexShrink: 0 }} />
             <code>bun add github:kurzagin/ui</code>
             <button
-              className="copy-btn"
+              className={`copy-btn ${copiedKey === 'bun' ? 'copied' : ''}`}
               onClick={() => copyToClipboard('bun add github:kurzagin/ui', 'bun')}
               aria-label="Copy installation command"
             >
-              {copiedKey === 'bun' ? <Check size={12} /> : <Copy size={12} />}
+              {copiedKey === 'bun' ? (
+                <>
+                  <Check size={11} />
+                  <span>Copied</span>
+                </>
+              ) : (
+                <>
+                  <Copy size={11} />
+                  <span>Copy</span>
+                </>
+              )}
             </button>
           </div>
         </section>
