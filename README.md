@@ -62,6 +62,7 @@ export default function MyComponent() {
 Supports instant theme switching via `data-theme` attribute:
 
 * `default` — Dark amber cyber-minimalist baseline
+* `alley` — Deep noir black with vibrant electric purple glow
 * `citlali` — Pink/purple glow character skin
 * `furina` — Cool blue ocean character skin
 

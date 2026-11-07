@@ -70,6 +70,14 @@ export const themePalettes = {
     bg2: '#122238',
     border: '#1f3c5e',
   },
+  alley: {
+    name: 'Alley Neon-Noir',
+    accent: '#b066ff',
+    bg0: '#050409',
+    bg1: '#0b0914',
+    bg2: '#141021',
+    border: '#382c54',
+  },
 } as const;
 
 export const typography = {
@@ -150,4 +158,4 @@ export const cssTokens = {
 
 export const tokens = cssTokens;
 
-export type ThemeName = 'default' | 'citlali' | 'furina';
+export type ThemeName = 'default' | 'citlali' | 'furina' | 'alley';

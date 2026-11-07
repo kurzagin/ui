@@ -11,19 +11,31 @@ import {
   Vinyl,
   StickyNote,
   SpoilerGate,
+  Input,
+  TelemetryBar,
+  HudModal,
+  TerminalWindow,
+  Tooltip,
+  Logo,
 } from '@kurzagin/ui';
-import { Copy, Check, Terminal, ExternalLink, Sparkles, Play, Pause } from 'lucide-react';
+import { Copy, Check, Terminal, ExternalLink, Sparkles, Play, Pause, ChevronUp } from 'lucide-react';
 
 const THEMES = [
   { id: 'default', name: 'Amber', color: '#c49368' },
+  { id: 'alley', name: 'Alley', color: '#b066ff' },
   { id: 'citlali', name: 'Citlali', color: '#f2a9c8' },
   { id: 'furina', name: 'Furina', color: '#5ab2ff' },
 ] as const;
 
 export default function HomePage() {
-  const [theme, setTheme] = useState<'default' | 'citlali' | 'furina'>('default');
+  const [theme, setTheme] = useState<'default' | 'citlali' | 'furina' | 'alley'>('default');
+  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
   const [isVinylPlaying, setIsVinylPlaying] = useState(true);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [demoInput, setDemoInput] = useState('');
+
+  const activeTheme = THEMES.find((t) => t.id === theme) || THEMES[0];
 
   const copyToClipboard = (text: string, key: string) => {
     navigator.clipboard.writeText(text);
@@ -38,29 +50,11 @@ export default function HomePage() {
         <div className="docs-container">
           <div className="header-inner">
             <a href="#" className="brand-link">
-              <Dot pulse color="accent" />
+              <Logo size={18} variant="accent" />
               <span>kurzagin/ui</span>
             </a>
 
             <div className="header-actions">
-              {/* Mobile Touch-Friendly Theme Switcher */}
-              <div className="theme-selector-container">
-                {THEMES.map((t) => (
-                  <button
-                    key={t.id}
-                    className={`theme-pill-btn ${theme === t.id ? 'active' : ''}`}
-                    onClick={() => setTheme(t.id)}
-                    aria-label={`Switch to ${t.name} theme`}
-                  >
-                    <span
-                      className="theme-color-indicator"
-                      style={{ background: t.color }}
-                    />
-                    <span className="theme-name-text">{t.name}</span>
-                  </button>
-                ))}
-              </div>
-
               <a
                 href="https://github.com/kurzagin/ui"
                 target="_blank"
@@ -98,86 +92,113 @@ export default function HomePage() {
           <div className="install-command-box">
             <Terminal size={13} style={{ color: 'var(--kz-accent)', flexShrink: 0 }} />
             <code>bun add github:kurzagin/ui</code>
-            <Button
-              size="sm"
-              variant="ghost"
-              onClick={() => copyToClipboard('bun add github:kurzagin/ui', 'install')}
-              style={{ marginLeft: 'auto', padding: '4px 6px', minHeight: '26px' }}
-              aria-label="Copy install command"
+            <button
+              className="copy-btn"
+              onClick={() => copyToClipboard('bun add github:kurzagin/ui', 'bun')}
+              aria-label="Copy installation command"
             >
-              {copiedKey === 'install' ? (
-                <Check size={12} style={{ color: 'var(--kz-green-soft)' }} />
-              ) : (
-                <Copy size={12} />
-              )}
-            </Button>
+              {copiedKey === 'bun' ? <Check size={12} /> : <Copy size={12} />}
+            </button>
           </div>
         </section>
 
-        {/* Component Showcase */}
-        <div className="showcase-grid">
-          {/* Vinyl Record Turntable */}
-          <BracketCard className="component-card">
+        {/* Showcase Grid */}
+        <div className="component-grid">
+          {/* Brand Logo & Asset Suite Showcase */}
+          <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
             <div className="component-header">
-              <span className="component-name">Vinyl Turntable</span>
-              <Badge variant="accent">Signature</Badge>
+              <span className="component-name">Brand Identity & Native Assets</span>
+              <div style={{ display: 'flex', gap: '6px' }}>
+                <Badge variant="accent">Vector SVG</Badge>
+                <Badge variant="purple">Android Adaptive</Badge>
+                <Badge variant="outline">Multi-res ICO</Badge>
+              </div>
             </div>
-            <div className="preview-box" style={{ flexDirection: 'column', gap: '16px' }}>
-              <Vinyl
-                size="md"
-                playing={isVinylPlaying}
-                label="KRZ-01"
-                onClick={() => setIsVinylPlaying(!isVinylPlaying)}
-              />
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => setIsVinylPlaying(!isVinylPlaying)}
-              >
-                {isVinylPlaying ? <Pause size={12} /> : <Play size={12} />}
-                <span>{isVinylPlaying ? 'Pause Rotation' : 'Spin Vinyl'}</span>
-              </Button>
-            </div>
-            <div className="code-box">
-              {`<Vinyl\n  size="md"\n  playing={${isVinylPlaying}}\n  label="KRZ-01"\n  onClick={() => setPlaying(!playing)}\n/>`}
-            </div>
-          </BracketCard>
 
-          {/* Sticky Notes */}
-          <BracketCard className="component-card">
-            <div className="component-header">
-              <span className="component-name">Sticky Note</span>
-              <Badge variant="teal">Physical UI</Badge>
+            {/* Sub-section 1: React Component Variants */}
+            <div style={{ padding: '12px 14px 4px', borderBottom: '1px solid var(--kz-border)' }}>
+              <span style={{ fontSize: '11px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-1)', textTransform: 'uppercase', letterSpacing: '0.8px' }}>
+                &gt; React &lt;Logo /&gt; Component Variants
+              </span>
             </div>
-            <div className="preview-box">
-              <StickyNote colorVariant={1} title="LORE LOG" tape style={{ maxWidth: '240px' }}>
-                Vinyl crackle, late-night anime, technical notes.
-              </StickyNote>
+            <div className="preview-box" style={{ gap: '24px', flexWrap: 'wrap', padding: '18px 14px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <Logo size={36} variant="default" />
+                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Default</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <Logo size={36} variant="accent" />
+                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Accent</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <Logo size={36} variant="purple" />
+                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Alley</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <Logo size={36} variant="teal" />
+                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Teal</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <Logo size={36} variant="minimal" />
+                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Minimal</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <Logo size={36} variant="monochrome" />
+                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Mono</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <Logo size={36} variant="badge" />
+                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>HUD Badge</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <Logo size={36} variant="purple" withRing />
+                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Alley Badge</span>
+              </div>
             </div>
-            <div className="code-box">
-              {`<StickyNote colorVariant={1} title="LORE LOG" tape>\n  Vinyl crackle, late-night anime.\n</StickyNote>`}
-            </div>
-          </BracketCard>
 
-          {/* Spoiler Gate */}
-          <BracketCard className="component-card">
-            <div className="component-header">
-              <span className="component-name">SpoilerGate</span>
-              <Badge variant="teal">Security HUD</Badge>
+            {/* Sub-section 2: Native Mobile & Favicon Assets */}
+            <div style={{ padding: '12px 14px 4px', borderTop: '1px solid var(--kz-border)', borderBottom: '1px solid var(--kz-border)' }}>
+              <span style={{ fontSize: '11px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-1)', textTransform: 'uppercase', letterSpacing: '0.8px' }}>
+                &gt; Static Master Icons &amp; Favicon Formats (Public Assets)
+              </span>
             </div>
-            <div className="preview-box">
-              <SpoilerGate
-                title="CLASSIFIED CODEX"
-                description="Tap to bypass classification gate and reveal secret notes."
-                buttonText="Bypass Gate"
-              >
-                <div style={{ padding: '12px', background: 'var(--kz-bg-2)', borderRadius: '4px', fontSize: '12px' }}>
-                  🔓 Intel unsealed: Project UI initialized successfully.
-                </div>
-              </SpoilerGate>
+            <div className="preview-box" style={{ gap: '20px', flexWrap: 'wrap', padding: '18px 14px', alignItems: 'flex-end' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <img src="/logo-badge.svg" alt="Amber Badge SVG" width={48} height={48} />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>logo-badge.svg</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <img src="/logo-alley.svg" alt="Alley Purple SVG" width={48} height={48} />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>logo-alley.svg</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <img src="/icon-alley.png" alt="Mobile Alley 1024" width={48} height={48} style={{ borderRadius: '10px' }} />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>icon-alley.png</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <img src="/apple-touch-icon.png" alt="Apple Touch Icon" width={40} height={40} style={{ borderRadius: '8px' }} />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>apple-touch (180)</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <img src="/pwa-192x192.png" alt="PWA 192" width={36} height={36} style={{ borderRadius: '6px' }} />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>pwa-192.png</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <img src="/favicon-48x48.png" alt="Favicon 48" width={32} height={32} />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>fav-48.png</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <img src="/favicon-32x32.png" alt="Favicon 32" width={24} height={24} />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>fav-32.png</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <img src="/favicon-16x16.png" alt="Favicon 16" width={16} height={16} />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>fav-16.png</span>
+              </div>
             </div>
+
             <div className="code-box">
-              {`<SpoilerGate title="CLASSIFIED CODEX">\n  Secret content here\n</SpoilerGate>`}
+              {`// Component Usage:\n<Logo size={28} variant="accent" />\n<Logo size={28} variant="purple" withRing />\n\n// Static Asset Exports: favicon.ico, logo.svg, icon-alley.png, pwa-192x192.png`}
             </div>
           </BracketCard>
 
@@ -185,15 +206,15 @@ export default function HomePage() {
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">Button</span>
-              <Badge variant="teal">Component</Badge>
+              <Badge variant="accent">Interactive</Badge>
             </div>
             <div className="preview-box">
-              <Button variant="primary" size="sm">Primary</Button>
-              <Button variant="outline" size="sm">Outline</Button>
-              <Button variant="ghost" size="sm">Ghost</Button>
+              <Button variant="primary">Execute</Button>
+              <Button variant="outline">Default</Button>
+              <Button variant="ghost">Dismiss</Button>
             </div>
             <div className="code-box">
-              {`<Button variant="primary">Primary</Button>\n<Button variant="outline">Outline</Button>`}
+              {`<Button variant="primary">Execute</Button>\n<Button variant="outline">Default</Button>`}
             </div>
           </BracketCard>
 
@@ -201,15 +222,17 @@ export default function HomePage() {
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">BracketCard</span>
-              <Badge variant="teal">Container</Badge>
+              <Badge variant="teal">Surface</Badge>
             </div>
             <div className="preview-box">
-              <BracketCard style={{ padding: '14px', fontSize: '12px', width: '100%', textAlign: 'center' }}>
-                Tap or hover to reveal corner brackets
+              <BracketCard style={{ padding: '16px', width: '100%' }}>
+                <span style={{ fontFamily: 'var(--kz-mono)', fontSize: '12px' }}>
+                  Bracket Card Container
+                </span>
               </BracketCard>
             </div>
             <div className="code-box">
-              {`<BracketCard>\n  HUD bracket styled card\n</BracketCard>`}
+              {`<BracketCard style={{ padding: '16px' }}>\n  <span>Content</span>\n</BracketCard>`}
             </div>
           </BracketCard>
 
@@ -217,15 +240,87 @@ export default function HomePage() {
           <BracketCard className="component-card">
             <div className="component-header">
               <span className="component-name">CornerFrame</span>
-              <Badge variant="teal">Frame</Badge>
+              <Badge variant="teal">Surface</Badge>
             </div>
             <div className="preview-box">
-              <CornerFrame style={{ padding: '14px 18px', background: 'var(--kz-bg-1)', fontSize: '12px' }}>
-                Technical Target Frame
+              <CornerFrame style={{ padding: '16px', width: '100%' }}>
+                <span style={{ fontFamily: 'var(--kz-mono)', fontSize: '12px' }}>
+                  HUD Tactical Frame
+                </span>
               </CornerFrame>
             </div>
             <div className="code-box">
-              {`<CornerFrame>\n  Technical Target Frame\n</CornerFrame>`}
+              {`<CornerFrame style={{ padding: '16px' }}>\n  <span>Content</span>\n</CornerFrame>`}
+            </div>
+          </BracketCard>
+
+          {/* Vinyl Disc Player */}
+          <BracketCard className="component-card">
+            <div className="component-header">
+              <span className="component-name">Vinyl</span>
+              <Badge variant="accent">Playable</Badge>
+            </div>
+            <div className="preview-box" style={{ flexDirection: 'column', gap: '14px' }}>
+              <Vinyl
+                size="md"
+                label="ALLEY"
+                playing={isVinylPlaying}
+              />
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsVinylPlaying(!isVinylPlaying)}
+              >
+                {isVinylPlaying ? <Pause size={12} /> : <Play size={12} />}
+                <span>{isVinylPlaying ? 'Pause' : 'Spin'}</span>
+              </Button>
+            </div>
+            <div className="code-box">
+              {`<Vinyl size="md" label="ALLEY" playing={playing} />`}
+            </div>
+          </BracketCard>
+
+          {/* Sticky Note */}
+          <BracketCard className="component-card">
+            <div className="component-header">
+              <span className="component-name">StickyNote</span>
+              <Badge variant="default">Analog</Badge>
+            </div>
+            <div className="preview-box">
+              <StickyNote
+                colorVariant={1}
+                title="MEMO // 04"
+                tape
+                style={{ maxWidth: '200px' }}
+              >
+                Refactored tokens to include Alley purple palette.
+              </StickyNote>
+            </div>
+            <div className="code-box">
+              {`<StickyNote colorVariant={1} title="MEMO // 04" tape>\n  Refactored tokens.\n</StickyNote>`}
+            </div>
+          </BracketCard>
+
+          {/* Spoiler Gate */}
+          <BracketCard className="component-card">
+            <div className="component-header">
+              <span className="component-name">SpoilerGate</span>
+              <Badge variant="accent">Security</Badge>
+            </div>
+            <div className="preview-box" style={{ width: '100%', padding: '0' }}>
+              <SpoilerGate
+                title="CLASSIFIED_FILE"
+                description="Access restricted to authorized operatives only."
+                clearanceText="LVL-4"
+              >
+                <div style={{ padding: '18px', textAlign: 'center', width: '100%' }}>
+                  <Badge variant="teal">ACCESS GRANTED</Badge>
+                  <p style={{ marginTop: '8px', fontSize: '12px' }}>Welcome operative.</p>
+                </div>
+              </SpoilerGate>
+            </div>
+            <div className="code-box">
+              {`<SpoilerGate title="CLASSIFIED" clearanceText="LVL-4">\n  <div>Confidential</div>\n</SpoilerGate>`}
             </div>
           </BracketCard>
 
@@ -239,6 +334,7 @@ export default function HomePage() {
               <Badge><Dot color="green" pulse /> Online</Badge>
               <Badge variant="accent"><Dot color="accent" /> Active</Badge>
               <Badge variant="teal"><Dot color="teal" /> Synced</Badge>
+              <Badge variant="purple"><Dot color="purple" /> Alley</Badge>
             </div>
             <div className="code-box">
               {`<Badge variant="accent">\n  <Dot color="accent" pulse /> Active\n</Badge>`}
@@ -261,6 +357,92 @@ export default function HomePage() {
               {`<TechLabel\n  label="SYSTEM_LOG"\n  jp="システム記録"\n  coord="35.68, 139.69"\n/>`}
             </div>
           </BracketCard>
+
+          {/* Input / Terminal Prompt */}
+          <BracketCard className="component-card">
+            <div className="component-header">
+              <span className="component-name">Input</span>
+              <Badge variant="accent">Form</Badge>
+            </div>
+            <div className="preview-box" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
+              <Input
+                label="COMMAND_QUERY"
+                sublabel="コマンド入力"
+                placeholder="system --sync-nodes"
+                value={demoInput}
+                onChange={(e) => setDemoInput(e.target.value)}
+                hint="Press Enter to execute query"
+              />
+            </div>
+            <div className="code-box">
+              {`<Input\n  label="COMMAND_QUERY"\n  sublabel="コマンド入力"\n  placeholder="system --sync-nodes"\n  prefixSymbol=">_"\n/>`}
+            </div>
+          </BracketCard>
+
+          {/* TelemetryBar Component */}
+          <BracketCard className="component-card">
+            <div className="component-header">
+              <span className="component-name">TelemetryBar</span>
+              <Badge variant="teal">Feedback</Badge>
+            </div>
+            <div className="preview-box" style={{ flexDirection: 'column', gap: '14px', alignItems: 'stretch' }}>
+              <TelemetryBar
+                label="BUFFER_INTEGRITY"
+                coord="CORE-A"
+                value={68}
+              />
+              <TelemetryBar
+                label="MEMORY_ALLOCATION"
+                coord="VRAM"
+                value={45}
+                segmented
+                variant="teal"
+              />
+            </div>
+            <div className="code-box">
+              {`<TelemetryBar label="BUFFER" value={68} coord="CORE-A" />\n<TelemetryBar segmented variant="teal" value={45} />`}
+            </div>
+          </BracketCard>
+
+          {/* TerminalWindow Component */}
+          <BracketCard className="component-card">
+            <div className="component-header">
+              <span className="component-name">TerminalWindow</span>
+              <Badge variant="purple">Surface</Badge>
+            </div>
+            <div className="preview-box" style={{ padding: '0', background: 'transparent', border: 'none' }}>
+              <TerminalWindow
+                title="cluster_daemon.sh"
+                badge="V-2.4"
+                code={`#!/bin/bash\nexport THEME="alley"\nkurzagin --status:optimal --node:01`}
+              />
+            </div>
+            <div className="code-box">
+              {`<TerminalWindow\n  title="cluster_daemon.sh"\n  badge="V-2.4"\n  code="..."\n/>`}
+            </div>
+          </BracketCard>
+
+          {/* HudModal & Tooltip */}
+          <BracketCard className="component-card">
+            <div className="component-header">
+              <span className="component-name">HudModal & Tooltip</span>
+              <Badge variant="accent">Overlay</Badge>
+            </div>
+            <div className="preview-box" style={{ gap: '14px' }}>
+              <Tooltip content="Execute Node Handshake" coord="0xFA">
+                <Button variant="primary" onClick={() => setIsModalOpen(true)}>
+                  Trigger HudModal
+                </Button>
+              </Tooltip>
+
+              <Tooltip content="Tactical HUD Telemetry">
+                <Badge variant="outline">Hover For Tooltip</Badge>
+              </Tooltip>
+            </div>
+            <div className="code-box">
+              {`<Tooltip content="Execute Node Handshake">\n  <Button onClick={() => setOpen(true)}>Open Modal</Button>\n</Tooltip>`}
+            </div>
+          </BracketCard>
         </div>
 
         {/* Footer */}
@@ -280,6 +462,84 @@ export default function HomePage() {
           <div>Apache-2.0 License</div>
         </footer>
       </main>
+
+      {/* HudModal Demo Instance */}
+      <HudModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="AUTH_PROMPT"
+        jp="安全承認"
+        coord="NODE-0x89"
+        footer={
+          <>
+            <Button size="sm" variant="outline" onClick={() => setIsModalOpen(false)}>
+              Abort
+            </Button>
+            <Button size="sm" variant="primary" onClick={() => setIsModalOpen(false)}>
+              Confirm
+            </Button>
+          </>
+        }
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <p style={{ margin: 0 }}>
+            Confirm node handshake and sync cluster state.
+          </p>
+          <TelemetryBar
+            label="CLUSTER_LOAD"
+            coord="ZONE-9"
+            value={84}
+            variant="purple"
+            segmented
+          />
+        </div>
+      </HudModal>
+
+      {/* Floating Theme Control */}
+      <div className="floating-theme-dock">
+        {isThemeMenuOpen && (
+          <div className="theme-dropdown-menu">
+            <div className="theme-menu-header">Select Theme</div>
+            {THEMES.map((t) => (
+              <button
+                key={t.id}
+                className={`theme-menu-item ${theme === t.id ? 'active' : ''}`}
+                onClick={() => {
+                  setTheme(t.id);
+                  setIsThemeMenuOpen(false);
+                }}
+              >
+                <span
+                  className="theme-color-indicator"
+                  style={{ background: t.color }}
+                />
+                <span>{t.name}</span>
+                {theme === t.id && <span className="theme-menu-check">●</span>}
+              </button>
+            ))}
+          </div>
+        )}
+
+        <button
+          type="button"
+          className="theme-trigger-btn"
+          onClick={() => setIsThemeMenuOpen(!isThemeMenuOpen)}
+          aria-label="Toggle theme picker"
+        >
+          <span
+            className="theme-color-indicator"
+            style={{ background: activeTheme.color }}
+          />
+          <span>Theme: {activeTheme.name}</span>
+          <ChevronUp
+            size={13}
+            style={{
+              transform: isThemeMenuOpen ? 'rotate(180deg)' : 'none',
+              transition: 'transform 0.15s ease',
+            }}
+          />
+        </button>
+      </div>
     </div>
   );
 }

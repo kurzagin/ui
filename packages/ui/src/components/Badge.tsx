@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, forwardRef } from 'react';
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
-  variant?: 'default' | 'accent' | 'teal';
+  variant?: 'default' | 'accent' | 'teal' | 'purple' | 'outline';
 }
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(

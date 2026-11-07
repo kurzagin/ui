@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, forwardRef } from 'react';
 
 export interface DotProps extends HTMLAttributes<HTMLSpanElement> {
-  color?: 'accent' | 'green' | 'red' | 'teal';
+  color?: 'accent' | 'green' | 'red' | 'teal' | 'purple';
   pulse?: boolean;
 }
 
