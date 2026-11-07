@@ -1766,3 +1766,204 @@
 .kz-toast-purple .kz-toast-progress-bar { background: var(--kz-purple); }
 .kz-toast-teal .kz-toast-progress-bar { background: var(--kz-teal); }
 .kz-toast-alert .kz-toast-progress-bar { background: var(--kz-red-soft); }
+
+/* ==========================================================================
+   Vinyl Variants (Alley, Teal, Gold, Hologram)
+   ========================================================================== */
+.kz-vinyl-alley .kz-vinyl {
+  background:
+    radial-gradient(circle at center, #1b0e2b 0%, #090510 60%, #200f33 62%, #050409 100%),
+    repeating-radial-gradient(circle at center, transparent 15px, rgba(176,102,255,0.06) 16px, transparent 17px, transparent 20px);
+  border-color: #3b1d5c;
+}
+
+.kz-vinyl-alley .kz-vinyl.playing {
+  border-color: var(--kz-purple);
+  box-shadow: 0 0 18px rgba(176, 102, 255, 0.45);
+}
+
+.kz-vinyl-alley .kz-vinyl-label {
+  background: #150924;
+  border-color: rgba(176, 102, 255, 0.3);
+}
+
+.kz-vinyl-alley .kz-vinyl-label span {
+  color: var(--kz-purple);
+}
+
+.kz-vinyl-teal .kz-vinyl {
+  background:
+    radial-gradient(circle at center, #071e1e 0%, #020909 60%, #0c2b2b 62%, #040b0b 100%),
+    repeating-radial-gradient(circle at center, transparent 15px, rgba(80,176,176,0.06) 16px, transparent 17px, transparent 20px);
+  border-color: #123d3d;
+}
+
+.kz-vinyl-teal .kz-vinyl.playing {
+  border-color: var(--kz-teal);
+  box-shadow: 0 0 18px rgba(80, 176, 176, 0.45);
+}
+
+.kz-vinyl-teal .kz-vinyl-label {
+  background: #061818;
+  border-color: rgba(80, 176, 176, 0.3);
+}
+
+.kz-vinyl-teal .kz-vinyl-label span {
+  color: var(--kz-teal);
+}
+
+.kz-vinyl-gold .kz-vinyl {
+  background:
+    radial-gradient(circle at center, #2e220a 0%, #120e04 60%, #3d2f0d 62%, #0a0803 100%),
+    repeating-radial-gradient(circle at center, transparent 15px, rgba(226,183,20,0.08) 16px, transparent 17px, transparent 20px);
+  border-color: #5c4714;
+}
+
+.kz-vinyl-gold .kz-vinyl.playing {
+  border-color: #e2b714;
+  box-shadow: 0 0 18px rgba(226, 183, 20, 0.45);
+}
+
+.kz-vinyl-gold .kz-vinyl-label {
+  background: #1f1807;
+  border-color: rgba(226, 183, 20, 0.4);
+}
+
+.kz-vinyl-gold .kz-vinyl-label span {
+  color: #e2b714;
+}
+
+.kz-vinyl-hologram .kz-vinyl {
+  background:
+    radial-gradient(circle at center, #111422 0%, #070912 60%, #1a1e36 62%, #04050a 100%),
+    repeating-conic-gradient(from 0deg, rgba(176,102,255,0.1) 0deg, rgba(80,176,176,0.1) 60deg, rgba(226,183,20,0.1) 120deg, rgba(176,102,255,0.1) 180deg);
+  border-color: #2b335c;
+}
+
+.kz-vinyl-hologram .kz-vinyl.playing {
+  border-color: #5ab2ff;
+  box-shadow: 0 0 20px rgba(90, 178, 255, 0.45);
+}
+
+.kz-vinyl-hologram .kz-vinyl-label {
+  background: #0a0d1c;
+  border-color: rgba(90, 178, 255, 0.4);
+}
+
+.kz-vinyl-hologram .kz-vinyl-label span {
+  color: #5ab2ff;
+}
+
+/* ==========================================================================
+   BottomBar (Tactical Mobile Dock & App Navigation)
+   ========================================================================== */
+.kz-bottom-bar {
+  width: 100%;
+  background: var(--kz-bg-1);
+  padding: 6px 12px calc(6px + env(safe-area-inset-bottom, 0px));
+  z-index: 900;
+  user-select: none;
+}
+
+.kz-bottom-bar-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.kz-bottom-bar-blur {
+  background: rgba(10, 10, 12, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.kz-bottom-bar-bordered {
+  border-top: 1px solid var(--kz-border);
+}
+
+.kz-bottom-bar-track {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+}
+
+.kz-bottom-bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  color: var(--kz-text-2);
+  cursor: pointer;
+  border-radius: var(--kz-radius-xs);
+  transition: all 0.15s ease;
+  position: relative;
+  flex: 1;
+}
+
+.kz-bottom-bar-item:hover:not(.kz-disabled) {
+  color: var(--kz-text-0);
+}
+
+.kz-bottom-bar-item.kz-active {
+  color: var(--kz-accent);
+}
+
+.kz-bottom-bar-alley .kz-bottom-bar-item.kz-active {
+  color: var(--kz-purple);
+}
+
+.kz-bottom-bar-teal .kz-bottom-bar-item.kz-active {
+  color: var(--kz-teal);
+}
+
+.kz-bottom-bar-active-pip {
+  position: absolute;
+  top: 0;
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.kz-bottom-bar-icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kz-bottom-bar-badge {
+  position: absolute;
+  top: -4px;
+  right: -8px;
+  font-family: var(--kz-mono);
+  font-size: 8px;
+  font-weight: bold;
+  padding: 1px 4px;
+  border-radius: 6px;
+  background: var(--kz-red-soft);
+  color: #ffffff;
+  line-height: 1;
+}
+
+.kz-bottom-bar-label {
+  font-family: var(--kz-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.kz-bottom-bar-item.kz-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}

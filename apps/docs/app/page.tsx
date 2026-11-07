@@ -23,8 +23,9 @@ import {
   Breadcrumbs,
   TacticalDrawer,
   HudToast,
+  BottomBar,
 } from '@kurzagin/ui';
-import { Copy, Check, Terminal, ExternalLink, Sparkles, Play, Pause, ChevronUp } from 'lucide-react';
+import { Copy, Check, Terminal, ExternalLink, Sparkles, Play, Pause, ChevronUp, Home, Compass, Disc3, Settings } from 'lucide-react';
 
 const THEMES = [
   { id: 'default', name: 'Amber', color: '#c49368' },
@@ -45,6 +46,7 @@ export default function HomePage() {
   const [switch2, setSwitch2] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isToastOpen, setIsToastOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('home');
 
   const activeTheme = THEMES.find((t) => t.id === theme) || THEMES[0];
 
@@ -261,29 +263,50 @@ export default function HomePage() {
             </div>
           </BracketCard>
 
-          {/* Vinyl Disc Player */}
+          {/* Vinyl Disc Player with Variants */}
           <BracketCard className="component-card">
             <div className="component-header">
-              <span className="component-name">Vinyl</span>
-              <Badge variant="accent">Playable</Badge>
+              <span className="component-name">Vinyl Variants</span>
+              <div style={{ display: 'flex', gap: '4px' }}>
+                <Badge variant="purple">Alley</Badge>
+                <Badge variant="teal">Teal</Badge>
+                <Badge variant="accent">Gold</Badge>
+              </div>
             </div>
             <div className="preview-box" style={{ flexDirection: 'column', gap: '14px' }}>
-              <Vinyl
-                size="md"
-                label="ALLEY"
-                playing={isVinylPlaying}
-              />
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                  <Vinyl size="sm" variant="default" label="AMBER" playing={isVinylPlaying} />
+                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Default</span>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                  <Vinyl size="sm" variant="alley" label="ALLEY" playing={isVinylPlaying} />
+                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Alley</span>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                  <Vinyl size="sm" variant="teal" label="TEAL" playing={isVinylPlaying} />
+                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Teal</span>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                  <Vinyl size="sm" variant="gold" label="GOLD" playing={isVinylPlaying} />
+                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Gold</span>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                  <Vinyl size="sm" variant="hologram" label="HOLO" playing={isVinylPlaying} />
+                  <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Holo</span>
+                </div>
+              </div>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => setIsVinylPlaying(!isVinylPlaying)}
               >
                 {isVinylPlaying ? <Pause size={12} /> : <Play size={12} />}
-                <span>{isVinylPlaying ? 'Pause' : 'Spin'}</span>
+                <span>{isVinylPlaying ? 'Pause All' : 'Spin All'}</span>
               </Button>
             </div>
             <div className="code-box">
-              {`<Vinyl size="md" label="ALLEY" playing={playing} />`}
+              {`<Vinyl variant="alley" label="ALLEY" playing={playing} />\n<Vinyl variant="gold" label="GOLD" playing={playing} />`}
             </div>
           </BracketCard>
 
@@ -567,6 +590,34 @@ export default function HomePage() {
             </div>
             <div className="code-box">
               {`<TacticalDrawer isOpen={open} onClose={() => setOpen(false)} position="bottom">\n  <Content />\n</TacticalDrawer>\n\n<HudToast isOpen={toast} onClose={() => setToast(false)} title="DOWNLOAD_COMPLETE" />`}
+            </div>
+          </BracketCard>
+
+          {/* BottomBar Component Showcase */}
+          <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
+            <div className="component-header">
+              <span className="component-name">BottomBar</span>
+              <div style={{ display: 'flex', gap: '6px' }}>
+                <Badge variant="purple">Alley</Badge>
+                <Badge variant="accent">Dock</Badge>
+              </div>
+            </div>
+            <div className="preview-box" style={{ padding: '0', background: 'transparent', border: 'none' }}>
+              <BottomBar
+                fixed={false}
+                variant="alley"
+                activeId={activeTab}
+                onSelect={setActiveTab}
+                items={[
+                  { id: 'home', label: 'Index', icon: <Home size={15} /> },
+                  { id: 'explore', label: 'Explore', icon: <Compass size={15} />, badge: '3' },
+                  { id: 'audio', label: 'Audio', icon: <Disc3 size={15} /> },
+                  { id: 'settings', label: 'Config', icon: <Settings size={15} /> },
+                ]}
+              />
+            </div>
+            <div className="code-box">
+              {`<BottomBar\n  variant="alley"\n  activeId={tab}\n  onSelect={setTab}\n  items={[\n    { id: 'home', label: 'Index', icon: <Home /> },\n    { id: 'audio', label: 'Audio', icon: <Disc3 />, badge: '3' },\n  ]}\n/>`}
             </div>
           </BracketCard>
         </div>

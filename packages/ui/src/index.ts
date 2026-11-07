@@ -28,3 +28,4 @@ export * from './components/KeyValGrid';
 export * from './components/Breadcrumbs';
 export * from './components/TacticalDrawer';
 export * from './components/HudToast';
+export * from './components/BottomBar';
