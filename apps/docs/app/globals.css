@@ -242,8 +242,46 @@ a:hover {
 
 .component-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.component-header-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.asset-preview-scroll {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  padding: 14px 10px;
+  overflow-x: auto;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.asset-sub-header {
+  padding: 10px 10px 4px;
+  border-bottom: 1px solid var(--kz-border-subtle);
+  font-size: 10px;
+  font-family: var(--kz-mono);
+  color: var(--kz-text-1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  word-break: break-word;
+}
+
+@media (min-width: 480px) {
+  .asset-sub-header {
+    font-size: 11px;
+    letter-spacing: 0.8px;
+    padding: 12px 14px 4px;
+  }
 }
 
 .component-name {

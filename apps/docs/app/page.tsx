@@ -107,98 +107,94 @@ export default function HomePage() {
           {/* Brand Logo & Asset Suite Showcase */}
           <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
             <div className="component-header">
-              <span className="component-name">Brand Identity & Native Assets</span>
-              <div style={{ display: 'flex', gap: '6px' }}>
+              <span className="component-name">Brand &amp; Assets</span>
+              <div className="component-header-tags">
                 <Badge variant="accent">Vector SVG</Badge>
-                <Badge variant="purple">Android Adaptive</Badge>
-                <Badge variant="outline">Multi-res ICO</Badge>
+                <Badge variant="purple">Android</Badge>
+                <Badge variant="outline">ICO</Badge>
               </div>
             </div>
 
             {/* Sub-section 1: React Component Variants */}
-            <div style={{ padding: '12px 14px 4px', borderBottom: '1px solid var(--kz-border)' }}>
-              <span style={{ fontSize: '11px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-1)', textTransform: 'uppercase', letterSpacing: '0.8px' }}>
-                &gt; React &lt;Logo /&gt; Component Variants
-              </span>
+            <div className="asset-sub-header">
+              &gt; React &lt;Logo /&gt; Variants
             </div>
-            <div className="preview-box" style={{ gap: '24px', flexWrap: 'wrap', padding: '18px 14px' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Logo size={36} variant="default" />
-                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Default</span>
+            <div className="preview-box" style={{ gap: '16px', flexWrap: 'wrap', padding: '14px 8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <Logo size={32} variant="default" />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Default</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Logo size={36} variant="accent" />
-                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Accent</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <Logo size={32} variant="accent" />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Accent</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Logo size={36} variant="purple" />
-                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Alley</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <Logo size={32} variant="purple" />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Alley</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Logo size={36} variant="teal" />
-                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Teal</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <Logo size={32} variant="teal" />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Teal</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Logo size={36} variant="minimal" />
-                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Minimal</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <Logo size={32} variant="minimal" />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Minimal</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Logo size={36} variant="monochrome" />
-                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Mono</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <Logo size={32} variant="monochrome" />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Mono</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Logo size={36} variant="badge" />
-                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>HUD Badge</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <Logo size={32} variant="badge" />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>HUD Ring</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Logo size={36} variant="purple" withRing />
-                <span style={{ fontSize: '10px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Alley Badge</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                <Logo size={32} variant="purple" withRing />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>Alley Ring</span>
               </div>
             </div>
 
             {/* Sub-section 2: Native Mobile & Favicon Assets */}
-            <div style={{ padding: '12px 14px 4px', borderTop: '1px solid var(--kz-border)', borderBottom: '1px solid var(--kz-border)' }}>
-              <span style={{ fontSize: '11px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-1)', textTransform: 'uppercase', letterSpacing: '0.8px' }}>
-                &gt; Static Master Icons &amp; Favicon Formats (Public Assets)
-              </span>
+            <div className="asset-sub-header" style={{ borderTop: '1px solid var(--kz-border-subtle)' }}>
+              &gt; Native Icons &amp; Favicon Formats
             </div>
-            <div className="preview-box" style={{ gap: '20px', flexWrap: 'wrap', padding: '18px 14px', alignItems: 'flex-end' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <img src="/logo-badge.svg" alt="Amber Badge SVG" width={48} height={48} />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>logo-badge.svg</span>
+            <div className="preview-box asset-preview-scroll">
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+                <img src="/logo-badge.svg" alt="Amber Badge SVG" width={40} height={40} />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>badge.svg</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <img src="/logo-alley.svg" alt="Alley Purple SVG" width={48} height={48} />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>logo-alley.svg</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+                <img src="/logo-alley.svg" alt="Alley Purple SVG" width={40} height={40} />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>alley.svg</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <img src="/icon-alley.png" alt="Mobile Alley 1024" width={48} height={48} style={{ borderRadius: '10px' }} />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>icon-alley.png</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+                <img src="/icon-alley.png" alt="Mobile Alley 1024" width={40} height={40} style={{ borderRadius: '8px' }} />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>alley.png</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <img src="/apple-touch-icon.png" alt="Apple Touch Icon" width={40} height={40} style={{ borderRadius: '8px' }} />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>apple-touch (180)</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+                <img src="/apple-touch-icon.png" alt="Apple Touch Icon" width={36} height={36} style={{ borderRadius: '7px' }} />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>apple-180</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <img src="/pwa-192x192.png" alt="PWA 192" width={36} height={36} style={{ borderRadius: '6px' }} />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>pwa-192.png</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+                <img src="/pwa-192x192.png" alt="PWA 192" width={32} height={32} style={{ borderRadius: '6px' }} />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>pwa-192</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <img src="/favicon-48x48.png" alt="Favicon 48" width={32} height={32} />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>fav-48.png</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+                <img src="/favicon-48x48.png" alt="Favicon 48" width={28} height={28} />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>fav-48</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <img src="/favicon-32x32.png" alt="Favicon 32" width={24} height={24} />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>fav-32.png</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+                <img src="/favicon-32x32.png" alt="Favicon 32" width={22} height={22} />
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>fav-32</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
                 <img src="/favicon-16x16.png" alt="Favicon 16" width={16} height={16} />
-                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>fav-16.png</span>
+                <span style={{ fontSize: '9px', fontFamily: 'var(--kz-mono)', color: 'var(--kz-text-2)' }}>fav-16</span>
               </div>
             </div>
 
             <div className="code-box">
-              {`// Component Usage:\n<Logo size={28} variant="accent" />\n<Logo size={28} variant="purple" withRing />\n\n// Static Asset Exports: favicon.ico, logo.svg, icon-alley.png, pwa-192x192.png`}
+              {`// React:\n<Logo size={28} variant="accent" />\n<Logo size={28} variant="purple" withRing />\n\n// Static:\nfavicon.ico, logo.svg, icon-alley.png, pwa-192x192.png`}
             </div>
           </BracketCard>
 
