@@ -119,6 +119,16 @@
   --kz-sticky-4: #f3e8ff;
 }
 
+/* ============================================================
+   Global Reset & Box Sizing for kz Primitives
+   ============================================================ */
+[class^="kz-"], [class*=" kz-"],
+[class^="kz-"] *, [class*=" kz-"] *,
+[class^="kz-"] *::before, [class*=" kz-"] *::after,
+[class^="kz-"]::before, [class*=" kz-"]::after {
+  box-sizing: border-box;
+}
+
 /* Dot Grid Pattern */
 .kz-dot-grid {
   background-image: radial-gradient(circle, var(--kz-border-subtle) 1px, transparent 1px);
@@ -1126,6 +1136,14 @@
   padding: 2px;
   gap: 2px;
   position: relative;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.kz-segmented-control::-webkit-scrollbar {
+  display: none;
 }
 
 .kz-segmented-full {
@@ -1550,7 +1568,7 @@
 
 .kz-drawer-panel-right {
   width: 100%;
-  max-width: 380px;
+  max-width: min(380px, 100vw);
   height: 100%;
   border-right: none;
   animation: kz-drawer-slide-left 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1650,7 +1668,7 @@
   bottom: 24px;
   left: 24px;
   z-index: 1100;
-  max-width: calc(100vw - 48px);
+  max-width: calc(100vw - 32px);
   width: 340px;
   background: var(--kz-bg-1);
   border: 1px solid var(--kz-border);
@@ -1658,6 +1676,16 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
   animation: kz-toast-pop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .kz-hud-toast {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    width: auto;
+    max-width: calc(100vw - 32px);
+  }
 }
 
 @keyframes kz-toast-pop {
@@ -1883,6 +1911,7 @@
 }
 
 .kz-bottom-bar-track {
+  width: 100%;
   max-width: 600px;
   margin: 0 auto;
   display: flex;
@@ -1899,13 +1928,14 @@
   gap: 4px;
   background: transparent;
   border: none;
-  padding: 6px 10px;
+  padding: 6px 6px;
   color: var(--kz-text-2);
   cursor: pointer;
   border-radius: var(--kz-radius-xs);
   transition: all 0.15s ease;
   position: relative;
   flex: 1;
+  min-width: 0;
 }
 
 .kz-bottom-bar-item:hover:not(.kz-disabled) {
@@ -1961,6 +1991,10 @@
   font-weight: 500;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .kz-bottom-bar-item.kz-disabled {
@@ -2073,7 +2107,7 @@
   border-radius: var(--kz-radius-md);
   padding: 16px;
   width: 100%;
-  max-width: 380px;
+  max-width: min(380px, 100%);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
@@ -2688,3 +2722,51 @@
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: var(--kz-text-1);
 }
+
+/* ============================================================
+   RESPONSIVE UTILITIES & MOBILE HARDENING (≤480px)
+   ============================================================ */
+@media (max-width: 480px) {
+  .kz-btn {
+    max-width: 100%;
+  }
+
+  .kz-terminal-window,
+  .kz-bracket-card,
+  .kz-corner-frame,
+  .kz-spoiler-gate,
+  .kz-telemetry-container,
+  .kz-input-wrapper {
+    max-width: 100%;
+  }
+
+  .kz-keyval-row {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .kz-keyval-leader {
+    display: none;
+  }
+
+  .kz-color-picker-popover {
+    max-width: calc(100vw - 32px);
+  }
+
+  .kz-dropdown-menu {
+    max-width: calc(100vw - 32px);
+  }
+
+  .kz-popover-content {
+    max-width: calc(100vw - 32px);
+  }
+
+  .kz-modal-portal {
+    padding: 8px;
+  }
+
+  .kz-modal-dialog {
+    max-height: calc(100vh - 16px);
+  }
+}
+
