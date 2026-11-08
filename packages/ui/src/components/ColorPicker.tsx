@@ -7,6 +7,7 @@ export interface ColorPickerProps {
   label?: string;
   sublabel?: string;
   coord?: string;
+  showHex?: boolean;
   showHexInput?: boolean;
   disabled?: boolean;
   size?: 'sm' | 'md' | 'lg';
@@ -27,6 +28,7 @@ export const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(
       label,
       sublabel,
       coord,
+      showHex = true,
       showHexInput = true,
       disabled = false,
       size = 'md',
@@ -63,14 +65,14 @@ export const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(
           .filter(Boolean)
           .join(' ')}
       >
-        {(label || sublabel || coord) && (
+        {(label || sublabel || coord || (showHex && (label || sublabel || coord))) && (
           <div className="kz-color-picker-header">
             <div className="kz-color-picker-label-group">
               {label && <label className="kz-color-picker-label">{label}</label>}
               {sublabel && <span className="kz-color-picker-sublabel">{sublabel}</span>}
               {coord && <span className="kz-color-picker-coord">{coord}</span>}
             </div>
-            <span className="kz-color-picker-hex">{value.toUpperCase()}</span>
+            {showHex && <span className="kz-color-picker-hex">{value.toUpperCase()}</span>}
           </div>
         )}
 

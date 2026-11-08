@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode, useState, useRef } from 'react';
+import React, { ReactNode, useState, useRef } from 'react';
 
 export interface TooltipProps {
   content: ReactNode;
@@ -38,6 +38,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
       onMouseLeave={hide}
       onFocus={show}
       onBlur={hide}
+      onTouchStart={() => setIsVisible((v) => !v)}
     >
       {children}
       {isVisible && (
@@ -50,7 +51,6 @@ export const Tooltip: React.FC<TooltipProps> = ({
             <span className="kz-tooltip-text">{content}</span>
             {shortcut && <kbd className="kz-tooltip-shortcut">{shortcut}</kbd>}
           </div>
-          <div className="kz-tooltip-arrow" />
         </div>
       )}
     </div>

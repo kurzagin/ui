@@ -12,7 +12,7 @@
       "name": "docs",
       "version": "0.1.0",
       "dependencies": {
-        "@krpkg/ui": "^0.4.0",
+        "@krpkg/ui": "^0.4.2",
         "lucide-react": "^1.16.0",
         "next": "16.3.8",
         "react": "^19.0.0",
@@ -228,7 +228,7 @@
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
 
-    "@krpkg/ui": ["@krpkg/ui@0.4.0", "", { "peerDependencies": { "react": ">=18.0.0", "react-dom": ">=18.0.0", "react-native": ">=0.70.0" }, "optionalPeers": ["react-dom", "react-native"] }, "sha512-qDLLjvKFdCRCShJk1dlzonOusC2YvUUrL8KzBvBl1f6X0wxPM1wXTVdKD7LWFnRzQr9DCeIak6Dkmm1b86Kb5A=="],
+    "@krpkg/ui": ["@krpkg/ui@0.4.2", "", { "peerDependencies": { "react": ">=18.0.0", "react-dom": ">=18.0.0", "react-native": ">=0.70.0" }, "optionalPeers": ["react-dom", "react-native"] }, "sha512-XKDGBZUdeabX5Ht/Sq3+YHm0aq7v1Z/gowJVfl5n61IXJAY94waR/HZbOVyvo2tJGvenHsmYIeuSd6Pxi29TMw=="],
 
     "@kurzagin/ui": ["@kurzagin/ui@workspace:packages/ui"],
 
