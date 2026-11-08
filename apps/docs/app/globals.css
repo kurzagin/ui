@@ -317,8 +317,8 @@ a:hover {
   gap: 12px;
   width: 100%;
   max-width: 100%;
-  overflow: hidden;
   box-sizing: border-box;
+  position: relative;
 }
 
 @media (min-width: 640px) {
@@ -399,8 +399,8 @@ a:hover {
   min-height: 80px;
   width: 100%;
   max-width: 100%;
-  overflow: hidden;
   box-sizing: border-box;
+  position: relative;
 }
 
 @media (min-width: 640px) {

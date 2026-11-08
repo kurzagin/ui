@@ -1,10 +1,11 @@
-import React, { ReactNode, useState, useRef } from 'react';
+import React, { forwardRef, ReactNode, useState, useRef } from 'react';
 
 export interface TooltipProps {
   content: ReactNode;
   children: ReactNode;
   position?: 'top' | 'bottom' | 'left' | 'right';
   coord?: string;
+  shortcut?: string;
   className?: string;
 }
 
@@ -13,6 +14,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   children,
   position = 'top',
   coord,
+  shortcut,
   className = '',
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,7 +33,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
 
   return (
     <div
-      className="kz-tooltip-wrapper"
+      className={`kz-tooltip-wrapper ${className}`}
       onMouseEnter={show}
       onMouseLeave={hide}
       onFocus={show}
@@ -41,10 +43,13 @@ export const Tooltip: React.FC<TooltipProps> = ({
       {isVisible && (
         <div
           role="tooltip"
-          className={`kz-tooltip-box kz-tooltip-${position} ${className}`}
+          className={`kz-tooltip-box kz-tooltip-${position}`}
         >
           {coord && <span className="kz-tooltip-coord">[{coord}]</span>}
-          <div className="kz-tooltip-content">{content}</div>
+          <div className="kz-tooltip-content">
+            <span className="kz-tooltip-text">{content}</span>
+            {shortcut && <kbd className="kz-tooltip-shortcut">{shortcut}</kbd>}
+          </div>
           <div className="kz-tooltip-arrow" />
         </div>
       )}

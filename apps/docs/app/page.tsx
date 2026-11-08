@@ -839,8 +839,6 @@ export default function HomePage() {
             <div className="preview-box" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '12px' }}>
               <ColorPicker
                 label="PRIMARY_PALETTE"
-                sublabel="カラーパレット"
-                coord="COLOR // 0x01"
                 value={pickerColor}
                 onChange={setPickerColor}
               />
@@ -848,7 +846,7 @@ export default function HomePage() {
             {openCodes['colorPicker'] && (
               <div className="code-collapse-panel">
                 <div className="code-box">
-                  {`<ColorPicker\n  label="PRIMARY_PALETTE"\n  coord="COLOR // 0x01"\n  value={color}\n  onChange={setColor}\n/>`}
+                  {`<ColorPicker\n  label="PRIMARY_PALETTE"\n  value={color}\n  onChange={setColor}\n/>`}
                 </div>
               </div>
             )}
