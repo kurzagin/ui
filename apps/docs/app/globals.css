@@ -1,5 +1,5 @@
 /* Docs App Styling */
-@import '@kurzagin/ui/styles.css';
+@import '@krpkg/ui/styles.css';
 
 *, *::before, *::after {
   box-sizing: border-box;

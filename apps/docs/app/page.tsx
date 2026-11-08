@@ -24,7 +24,7 @@ import {
   TacticalDrawer,
   HudToast,
   BottomBar,
-} from '@kurzagin/ui';
+} from '@krpkg/ui';
 import { Copy, Check, Terminal, ExternalLink, Sparkles, Play, Pause, ChevronUp, Home, Compass, Disc3, Settings, Code, Star } from 'lucide-react';
 
 const THEMES = [
