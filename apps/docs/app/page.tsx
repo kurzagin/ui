@@ -138,7 +138,7 @@ export default function HomePage() {
         {/* Showcase Grid */}
         <div className="component-grid">
           {/* Brand Logo & Asset Suite Showcase */}
-          <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
+          <BracketCard className="component-card component-card-full">
             <div className="component-header">
               <span className="component-name">Brand &amp; Assets</span>
               <button
@@ -269,7 +269,7 @@ export default function HomePage() {
           </BracketCard>
 
           {/* Vinyl Disc Player */}
-          <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
+          <BracketCard className="component-card component-card-full">
             <div className="component-header">
               <span className="component-name">Vinyl Audio Deck</span>
               <button
@@ -750,7 +750,7 @@ export default function HomePage() {
           </BracketCard>
 
           {/* TacticalDrawer & HudToast Controls */}
-          <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
+          <BracketCard className="component-card component-card-full">
             <div className="component-header">
               <span className="component-name">TacticalDrawer &amp; HudToast</span>
               <button
@@ -902,7 +902,7 @@ export default function HomePage() {
           </BracketCard>
 
           {/* BottomBar Component Showcase */}
-          <BracketCard className="component-card" style={{ gridColumn: '1 / -1' }}>
+          <BracketCard className="component-card component-card-full">
             <div className="component-header">
               <span className="component-name">BottomBar</span>
               <button
