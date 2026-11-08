@@ -1,4 +1,4 @@
-# @kurzagin/ui
+# @krpkg/ui
 
 > Cyber-minimalist, dark-themed UI system extracted from [kurzagin.com](https://kurzagin.com).  
 > Designed for technical, terminal, and HUD aesthetic web applications.
@@ -7,16 +7,16 @@ Public showcase & documentation: [ui.kurzagin.com](https://ui.kurzagin.com)
 
 ---
 
-## 📦 Installation (GitHub)
+## 📦 Installation
 
-No public npm registry needed. Install directly into any project using Bun, pnpm, or npm:
+Install into any project using Bun, npm, or pnpm:
 
 ```bash
-bun add github:kurzagin/ui
-# or with pnpm
-pnpm add github:kurzagin/ui
+bun add @krpkg/ui
 # or with npm
-npm install github:kurzagin/ui
+npm i @krpkg/ui
+# or with pnpm
+pnpm add @krpkg/ui
 ```
 
 ---
@@ -28,13 +28,13 @@ npm install github:kurzagin/ui
 In your application root (`layout.tsx`, `App.tsx`, or `main.css`):
 
 ```tsx
-import '@kurzagin/ui/styles.css';
+import '@krpkg/ui/styles.css';
 ```
 
 ### 2. Use Components
 
 ```tsx
-import { BracketCard, Button, Badge, Dot, CornerFrame, TechLabel } from '@kurzagin/ui';
+import { BracketCard, Button, Badge, Dot, CornerFrame, TechLabel } from '@krpkg/ui';
 
 export default function MyComponent() {
   return (
@@ -68,7 +68,7 @@ Supports instant theme switching via `data-theme` attribute:
 
 ```html
 <html data-theme="citlali">
-  <!-- All @kurzagin/ui tokens and components adapt automatically -->
+  <!-- All @krpkg/ui tokens and components adapt automatically -->
 </html>
 ```
 

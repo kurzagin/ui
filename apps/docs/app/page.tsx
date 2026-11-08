@@ -91,16 +91,16 @@ export default function HomePage() {
 
           <p className="hero-desc">
             Cyber-aesthetic React design system extracted from kurzagin.com.
-            Zero lock-in, mobile-first, installable directly from GitHub.
+            Zero lock-in, mobile-first, installable directly from npm.
           </p>
 
           <div className="hero-cta-group">
             <div className="install-command-box">
               <Terminal size={13} style={{ color: 'var(--kz-accent)', flexShrink: 0 }} />
-              <code>bun add github:kurzagin/ui</code>
+              <code>bun add @krpkg/ui</code>
               <button
                 className={`copy-btn ${copiedKey === 'bun' ? 'copied' : ''}`}
-                onClick={() => copyToClipboard('bun add github:kurzagin/ui', 'bun')}
+                onClick={() => copyToClipboard('bun add @krpkg/ui', 'bun')}
                 aria-label="Copy installation command"
               >
                 {copiedKey === 'bun' ? (
