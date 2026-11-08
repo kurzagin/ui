@@ -24,6 +24,10 @@ import {
   TacticalDrawer,
   HudToast,
   BottomBar,
+  Slider,
+  ColorPicker,
+  DropdownMenu,
+  Popover,
 } from '@krpkg/ui';
 import { Copy, Check, Terminal, ExternalLink, Sparkles, Play, Pause, ChevronUp, Home, Compass, Disc3, Settings, Code, Star } from 'lucide-react';
 
@@ -47,6 +51,8 @@ export default function HomePage() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isToastOpen, setIsToastOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('home');
+  const [sliderVal, setSliderVal] = useState(65);
+  const [pickerColor, setPickerColor] = useState('#c49368');
   const [openCodes, setOpenCodes] = useState<Record<string, boolean>>({});
 
   const toggleCode = (name: string) => {
@@ -770,6 +776,127 @@ export default function HomePage() {
                 <div className="code-box">
               {`<TacticalDrawer isOpen={open} onClose={() => setOpen(false)} position="bottom">\n  <Content />\n</TacticalDrawer>\n\n<HudToast isOpen={toast} onClose={() => setToast(false)} title="DOWNLOAD_COMPLETE" />`}
             </div>
+              </div>
+            )}
+          </BracketCard>
+
+          
+          {/* Slider Component Showcase */}
+          <BracketCard className="component-card">
+            <div className="component-header">
+              <span className="component-name">Slider</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['slider'] ? 'active' : ''}`}
+                onClick={() => toggleCode('slider')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['slider'] ? 'Hide Code' : 'Code'}</span>
+              </button>
+            </div>
+            <div className="preview-box" style={{ flexDirection: 'column', gap: '16px', alignItems: 'stretch' }}>
+              <Slider
+                label="SCALE_MAGNITUDE"
+                sublabel="倍率設定"
+                coord="ZOOM // 0x1A"
+                value={sliderVal}
+                onChange={(e) => setSliderVal(Number(e.target.value))}
+                valueFormatter={(val) => `${val}%`}
+                variant="accent"
+              />
+              <Slider
+                label="OPACITY_LEVEL"
+                coord="ALPHA"
+                defaultValue={40}
+                variant="teal"
+                valueFormatter={(val) => `${val}%`}
+              />
+            </div>
+            {openCodes['slider'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
+                  {`<Slider\n  label="SCALE_MAGNITUDE"\n  value={val}\n  onChange={(e) => setVal(Number(e.target.value))}\n  valueFormatter={(v) => \`\${v}%\`}\n  variant="accent"\n/>`}
+                </div>
+              </div>
+            )}
+          </BracketCard>
+
+          {/* ColorPicker Component Showcase */}
+          <BracketCard className="component-card">
+            <div className="component-header">
+              <span className="component-name">ColorPicker</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['colorPicker'] ? 'active' : ''}`}
+                onClick={() => toggleCode('colorPicker')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['colorPicker'] ? 'Hide Code' : 'Code'}</span>
+              </button>
+            </div>
+            <div className="preview-box" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '12px' }}>
+              <ColorPicker
+                label="PRIMARY_PALETTE"
+                sublabel="カラーパレット"
+                coord="COLOR // 0x01"
+                value={pickerColor}
+                onChange={setPickerColor}
+              />
+            </div>
+            {openCodes['colorPicker'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
+                  {`<ColorPicker\n  label="PRIMARY_PALETTE"\n  coord="COLOR // 0x01"\n  value={color}\n  onChange={setColor}\n/>`}
+                </div>
+              </div>
+            )}
+          </BracketCard>
+
+          {/* DropdownMenu & Popover Showcase */}
+          <BracketCard className="component-card">
+            <div className="component-header">
+              <span className="component-name">DropdownMenu &amp; Popover</span>
+              <button
+                type="button"
+                className={`code-toggle-btn ${openCodes['dropdownPopover'] ? 'active' : ''}`}
+                onClick={() => toggleCode('dropdownPopover')}
+                aria-label="Toggle code snippet"
+              >
+                <Code size={11} />
+                <span>{openCodes['dropdownPopover'] ? 'Hide Code' : 'Code'}</span>
+              </button>
+            </div>
+            <div className="preview-box" style={{ gap: '14px', flexWrap: 'wrap' }}>
+              <DropdownMenu
+                title="EXPORT_FORMATS"
+                coord="MENU // 0x09"
+                trigger={<Button variant="outline" size="sm">Export File ▼</Button>}
+                items={[
+                  { id: 'png', label: 'PNG Image', sublabel: 'Lossless', shortcut: 'Ctrl+E' },
+                  { id: 'svg', label: 'SVG Vector', sublabel: 'Scalable', badge: 'PRO' },
+                  { id: 'json', label: 'Canvas JSON', shortcut: 'Ctrl+S' },
+                  { id: 'clear', label: 'Purge Canvas', danger: true },
+                ]}
+              />
+
+              <Popover
+                title="CALIBRATION"
+                coord="POP // 0x04"
+                trigger={<Button variant="primary" size="sm">Tactical Popover</Button>}
+              >
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '12px' }}>
+                  <p style={{ margin: 0, color: 'var(--kz-text-1)' }}>Fine-grain grid alignment matrix.</p>
+                  <Button size="sm" variant="outline">Calibrate</Button>
+                </div>
+              </Popover>
+            </div>
+            {openCodes['dropdownPopover'] && (
+              <div className="code-collapse-panel">
+                <div className="code-box">
+                  {`<DropdownMenu\n  trigger={<Button>Export ▼</Button>}\n  items={[\n    { id: 'png', label: 'PNG Image', shortcut: 'Ctrl+E' },\n    { id: 'clear', label: 'Purge', danger: true },\n  ]}\n/>\n\n<Popover trigger={<Button>Popover</Button>}>\n  <div>Content</div>\n</Popover>`}
+                </div>
               </div>
             )}
           </BracketCard>

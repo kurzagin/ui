@@ -29,3 +29,7 @@ export * from './components/Breadcrumbs';
 export * from './components/TacticalDrawer';
 export * from './components/HudToast';
 export * from './components/BottomBar';
+export * from './components/Slider';
+export * from './components/ColorPicker';
+export * from './components/DropdownMenu';
+export * from './components/Popover';
