@@ -1,0 +1,115 @@
+import React, { SVGProps, forwardRef } from 'react';
+
+export interface LogoProps extends SVGProps<SVGSVGElement> {
+  size?: number | string;
+  color?: string;
+  variant?: 'default' | 'accent' | 'teal' | 'purple' | 'minimal' | 'monochrome' | 'badge';
+  withRing?: boolean;
+}
+
+// Canonical vector path extracted from the authentic Kurzagin brand emblem
+const KURZAGIN_EMBLEM_PATH =
+  'M 427.836 313.750 C 407.437 340.731, 394.892 355.256, 374.072 376.002 C 354.040 395.961, 340.283 407.774, 313 428.443 C 304.475 434.901, 297.379 440.507, 297.231 440.899 C 297.083 441.292, 301.161 442.068, 306.293 442.625 C 315.608 443.635, 315.631 443.644, 319.771 448.136 C 322.053 450.611, 326.525 453.914, 329.710 455.475 C 332.894 457.037, 342.025 459.858, 350 461.744 C 372.991 467.182, 394.656 473.443, 409.642 478.980 C 417.264 481.796, 435.650 490.118, 450.500 497.473 C 465.350 504.829, 479.843 511.371, 482.706 512.013 C 485.569 512.654, 489.315 512.870, 491.030 512.493 C 495.063 511.608, 500.400 506.893, 502.055 502.755 C 502.771 500.965, 504.654 497.826, 506.239 495.780 L 509.121 492.059 500.195 477.780 C 482.447 449.389, 470.897 425.848, 461.635 399.191 C 453.474 375.701, 448.375 352.493, 444.016 319 C 442.835 309.925, 441.560 301.262, 441.184 299.750 C 440.541 297.166, 439.733 298.014, 427.836 313.750 M 653.035 367.631 C 630.326 397.968, 609.007 422.929, 590.366 441.009 C 571.099 459.696, 557.105 471.452, 529.623 492.040 C 516.293 502.026, 515.859 502.464, 518.623 503.127 C 520.205 503.507, 524.434 504.108, 528.020 504.464 C 534.161 505.072, 534.824 505.396, 539.427 510.027 C 545.512 516.149, 554.045 519.837, 570.500 523.457 C 597.419 529.379, 620.207 536.452, 641.500 545.492 C 647.550 548.061, 660.747 554.437, 670.826 559.661 C 680.905 564.885, 691.663 570.024, 694.732 571.080 C 705.045 574.628, 713.038 573.043, 717.643 566.536 C 718.664 565.093, 721.423 561.512, 723.773 558.577 L 728.046 553.241 721.158 542.371 C 706.003 518.456, 694.474 496.400, 686.725 476.500 C 681.571 463.266, 675.390 443.922, 672.594 432.275 C 669.515 419.452, 665.566 396.537, 662.660 374.631 L 660.422 357.763 653.035 367.631 M 495 525.305 C 490.875 530.880, 482.805 541.304, 477.066 548.471 C 443.624 590.231, 416.848 615.914, 370.750 650.443 C 364.288 655.284, 359 659.554, 359 659.931 C 359 660.308, 363.190 661.072, 368.312 661.627 C 377.605 662.634, 377.632 662.645, 381.771 667.136 C 384.053 669.611, 388.419 672.860, 391.474 674.356 C 394.529 675.852, 403.885 678.674, 412.264 680.626 C 453.717 690.286, 479.620 699.543, 512.500 716.446 C 523.500 722.101, 534.907 727.515, 537.848 728.477 C 541.471 729.662, 545.147 730.085, 549.239 729.789 C 554.840 729.384, 555.545 729.051, 558.891 725.234 C 565.508 717.684, 570 711.874, 570 710.865 C 570 710.315, 565.859 703.258, 560.797 695.183 C 550.969 679.501, 539.291 657.628, 532.980 643.076 C 527.165 629.669, 518.662 604.130, 515.143 589.500 C 511.412 573.988, 507.612 551.727, 505.413 532.500 C 504.533 524.800, 503.517 517.750, 503.156 516.834 C 502.661 515.577, 500.658 517.657, 495 525.305';
+
+export const Logo = forwardRef<SVGSVGElement, LogoProps>(
+  (
+    {
+      size = 28,
+      color,
+      variant = 'default',
+      withRing,
+      className = '',
+      style,
+      ...props
+    },
+    ref
+  ) => {
+    let glyphFill = color;
+    let ringStroke = color || 'currentColor';
+    let ringBg = 'transparent';
+
+    if (!color) {
+      switch (variant) {
+        case 'accent':
+          glyphFill = 'var(--kz-accent, #c49368)';
+          ringStroke = 'var(--kz-accent, #c49368)';
+          break;
+        case 'teal':
+          glyphFill = 'var(--kz-teal, #50b0b0)';
+          ringStroke = 'var(--kz-teal, #50b0b0)';
+          break;
+        case 'purple':
+          glyphFill = 'var(--kz-purple, #b066ff)';
+          ringStroke = 'var(--kz-purple, #b066ff)';
+          break;
+        case 'minimal':
+          glyphFill = 'var(--kz-text-1, #b0aca4)';
+          ringStroke = 'var(--kz-border, #2a2a30)';
+          break;
+        case 'monochrome':
+          glyphFill = 'var(--kz-text-0, #e2ded6)';
+          ringStroke = 'var(--kz-border-light, #3a3a42)';
+          break;
+        case 'badge':
+          glyphFill = 'var(--kz-accent, #c49368)';
+          ringStroke = 'var(--kz-accent, #c49368)';
+          ringBg = 'rgba(10, 10, 12, 0.9)';
+          break;
+        case 'default':
+        default:
+          glyphFill = 'var(--kz-accent, #c49368)';
+          ringStroke = 'var(--kz-border, #2a2a30)';
+          break;
+      }
+    }
+
+    const showRing = withRing !== undefined ? withRing : variant === 'badge';
+
+    return (
+      <svg
+        ref={ref}
+        width={size}
+        height={size}
+        viewBox="0 0 1024 1024"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className={`kz-logo kz-logo-${variant} ${className}`.trim()}
+        style={{
+          display: 'inline-block',
+          verticalAlign: 'middle',
+          flexShrink: 0,
+          ...style,
+        }}
+        {...props}
+      >
+        {showRing && (
+          <>
+            {ringBg !== 'transparent' && (
+              <circle cx="512" cy="512" r="488" fill={ringBg} />
+            )}
+            <circle
+              cx="512"
+              cy="512"
+              r="488"
+              stroke={ringStroke}
+              strokeWidth="24"
+              strokeOpacity={variant === 'default' ? 0.4 : 0.8}
+            />
+            {/* HUD Corner Accents */}
+            <circle cx="512" cy="18" r="8" fill={glyphFill} />
+            <circle cx="512" cy="1006" r="8" fill={glyphFill} />
+            <circle cx="18" cy="512" r="8" fill={glyphFill} />
+            <circle cx="1006" cy="512" r="8" fill={glyphFill} />
+          </>
+        )}
+        <path
+          d={KURZAGIN_EMBLEM_PATH}
+          fill={glyphFill || 'currentColor'}
+          fillRule="evenodd"
+        />
+      </svg>
+    );
+  }
+);
+
+Logo.displayName = 'Logo';
